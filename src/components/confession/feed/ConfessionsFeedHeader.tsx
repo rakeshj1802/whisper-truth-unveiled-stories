@@ -31,6 +31,16 @@ const ConfessionsFeedHeader: React.FC<ConfessionsFeedHeaderProps> = ({
           // The subtitle will handle the "Real stories..." message.
           null
         )}
+        {/* Refresh button removed from here */}
+      </div>
+      <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        {subtitle}
+      </p>
+      <div className="mt-6 flex items-center justify-center gap-4"> {/* New container for count and refresh */}
+        <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full border border-purple-500/30">
+          <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+          {confessionsCount} confessions available
+        </div>
         <Button
           onClick={onRefresh}
           variant="ghost"
@@ -40,13 +50,6 @@ const ConfessionsFeedHeader: React.FC<ConfessionsFeedHeaderProps> = ({
         >
           <RefreshCw className={`w-6 h-6 ${isLoading ? 'animate-spin' : ''}`} />
         </Button>
-      </div>
-      <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        {subtitle}
-      </p>
-      <div className="mt-6 inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full border border-purple-500/30">
-        <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-        {confessionsCount} confessions available
       </div>
     </div>
   );
