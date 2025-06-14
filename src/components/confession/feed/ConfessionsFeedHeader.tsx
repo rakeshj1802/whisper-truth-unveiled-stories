@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { RefreshCw } from 'lucide-react';
 
 interface ConfessionsFeedHeaderProps {
-  title?: string; // Made title optional
+  title?: string; // Title is optional
   subtitle: string;
   confessionsCount: number;
   onRefresh: () => void;
@@ -21,10 +21,15 @@ const ConfessionsFeedHeader: React.FC<ConfessionsFeedHeaderProps> = ({
   return (
     <div className="text-center mb-16">
       <div className="flex items-center justify-center gap-4 mb-6">
-        {title && ( // Conditionally render the title
+        {title ? ( // If a title is provided and not an empty string
           <h2 className="font-playfair text-4xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
             {title}
           </h2>
+        ) : (
+          // If no title is provided (e.g., for the "All" category view), display this custom text
+          <p className="text-lg text-gray-400 italic">
+            Real stories from real people. Read them, listen to them, feel them.
+          </p>
         )}
         <Button
           onClick={onRefresh}
@@ -48,4 +53,3 @@ const ConfessionsFeedHeader: React.FC<ConfessionsFeedHeaderProps> = ({
 };
 
 export default ConfessionsFeedHeader;
-
