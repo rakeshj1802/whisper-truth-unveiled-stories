@@ -17,7 +17,7 @@ interface ConfessionCardHeaderProps {
 }
 
 const getInitials = (gender: string) => {
-  return gender === 'M' ? 'M' : 'F';
+  return gender === 'M' ? 'M' : gender === 'F' ? 'F' : gender.substring(0,1).toUpperCase(); // Handle NB or other genders
 };
 
 const ConfessionCardHeader: React.FC<ConfessionCardHeaderProps> = ({
@@ -30,6 +30,9 @@ const ConfessionCardHeader: React.FC<ConfessionCardHeaderProps> = ({
   confessionId,
   onToggleAudio,
 }) => {
+  // Log the avatarColor and confessionId for debugging
+  console.log(`ConfessionCardHeader - ID: ${confessionId}, avatarColor: ${avatarColor}`);
+
   return (
     <div className="flex items-center justify-between mb-4">
       <Link to="/profile" className="flex items-center group/avatar">
@@ -41,7 +44,7 @@ const ConfessionCardHeader: React.FC<ConfessionCardHeaderProps> = ({
         <div>
           <div className="flex items-center text-sm text-gray-300 font-medium group-hover/avatar:text-purple-300 transition-colors">
             <span className="bg-purple-500/20 px-2 py-1 rounded-full">
-              {gender}, {age}
+              {gender === "NB" ? "NB" : gender}, {age} {/* Display NB correctly if gender is NB */}
             </span>
           </div>
           <div className="flex items-center text-xs text-gray-500 mt-1 group-hover/avatar:text-gray-400 transition-colors">
