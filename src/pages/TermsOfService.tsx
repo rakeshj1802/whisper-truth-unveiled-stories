@@ -1,15 +1,28 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Button } from '@/components/ui/button'; // Import Button
+import { ArrowLeft } from 'lucide-react'; // Import ArrowLeft icon
 
 const TermsOfService = () => {
-  return (
-    <div className="min-h-screen bg-gray-900 text-white"> {/* Added background and ensured min height */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"> {/* Added responsive padding */}
-        <h1 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 font-playfair text-center">Terms of Service</h1> {/* Centered title and used Playfair */}
-        <p className="mb-4 text-gray-400 text-center">Effective Date: June 14, 2025</p> {/* Centered date */}
+  const navigate = useNavigate(); // Initialize useNavigate
 
-        <div className="space-y-8 bg-gray-800/50 p-6 sm:p-8 rounded-lg shadow-lg border border-gray-700"> {/* Added a container for better readability */}
+  return (
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="mb-8"> {/* Added margin bottom for spacing */}
+          <Button
+            variant="ghost"
+            onClick={() => navigate(-1)}
+            className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/20"
+          >
+            <ArrowLeft className="mr-2 h-5 w-5" />
+            Back
+          </Button>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 font-playfair text-center">Terms of Service</h1>
+        <p className="mb-4 text-gray-400 text-center">Effective Date: June 14, 2025</p>
+
+        <div className="space-y-8 bg-gray-800/50 p-6 sm:p-8 rounded-lg shadow-lg border border-gray-700">
           <p className="mb-4 text-gray-300">
             Welcome to <strong>ConfessionX</strong> — a community-driven platform that allows users to view and submit anonymous confessions, both in text and audio format. By accessing or using this site, you agree to be bound by the following terms and conditions.
           </p>
@@ -32,7 +45,7 @@ const TermsOfService = () => {
             <h2 className="text-xl sm:text-2xl font-semibold mt-8 mb-4 text-purple-300">3. Content Ownership & Responsibility</h2>
             <p className="mb-4 text-gray-300">
               All confessions displayed are submitted by users via third-party forms. ConfessionX does not claim ownership over any user-submitted content.
-              However, we reserve the right to moderate, remove, or reject any content that violates our <Link to="/content-policy" className="text-purple-400 hover:text-purple-300 underline">Content Policy</Link>.
+              However, we reserve the right to moderate, remove, or reject any content that violates our <Link to="/privacy-policy#contact" className="text-purple-400 hover:text-purple-300 underline">Content Policy</Link>. {/* Assuming Content Policy might be part of Privacy Policy or a new page */}
             </p>
           </div>
 
@@ -96,4 +109,3 @@ const TermsOfService = () => {
 };
 
 export default TermsOfService;
-

@@ -1,9 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Button } from '@/components/ui/button'; // Import Button
+import { ArrowLeft } from 'lucide-react'; // Import ArrowLeft icon
+
 
 const PrivacyPolicy = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white"> {/* Added background and ensured min height */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"> {/* Added responsive padding */}
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="mb-8"> {/* Added margin bottom for spacing */}
+          <Button
+            variant="ghost"
+            onClick={() => navigate(-1)}
+            className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/20"
+          >
+            <ArrowLeft className="mr-2 h-5 w-5" />
+            Back
+          </Button>
+        </div>
         <h1 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 font-playfair text-center">Privacy Policy</h1> {/* Centered title and used Playfair */}
         <p className="mb-4 text-gray-400 text-center">Effective Date: June 14, 2025</p> {/* Centered date */}
 
@@ -54,7 +70,7 @@ const PrivacyPolicy = () => {
             </p>
           </div>
 
-          <div>
+          <div id="contact"> {/* Added id for linking */}
             <h2 className="text-xl sm:text-2xl font-semibold mt-8 mb-4 text-purple-300">7. Data Removal & Contact</h2>
             <p className="mb-4 text-gray-300">
               If you would like to request the removal of any content you have submitted or believe your privacy has been violated, please email us at: <a className="text-purple-400 hover:text-purple-300 underline" href="mailto:confessionx@zohomail.in">confessionx@zohomail.in</a>.
