@@ -1,9 +1,8 @@
-
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
 
 // Import the logo
-import ConfessionXLogo from "@/assets/logos/confessionx-logo.png";
+import ConfessionXLogo from "@/assets/logos/confessionx-logo-1.png";
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState(0);
@@ -116,4 +115,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
