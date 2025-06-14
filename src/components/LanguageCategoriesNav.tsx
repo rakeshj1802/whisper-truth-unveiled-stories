@@ -8,13 +8,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// Hardcoded language categories for now, can be moved to categories.ts if desired
+// Languages: Telugu, Hindi, English, Tamil, Kannada
 const languageCategories = [
   {
-    id: "en",
-    name: "English",
-    icon: "🌍",
-    slug: "en",
+    id: "te",
+    name: "Telugu",
+    icon: "🔵",
+    slug: "te",
   },
   {
     id: "hi",
@@ -22,7 +22,24 @@ const languageCategories = [
     icon: "🇮🇳",
     slug: "hi",
   },
-  // Add more languages as needed ...
+  {
+    id: "en",
+    name: "English",
+    icon: "🌍",
+    slug: "en",
+  },
+  {
+    id: "ta",
+    name: "Tamil",
+    icon: "🟣",
+    slug: "ta",
+  },
+  {
+    id: "kn",
+    name: "Kannada",
+    icon: "🔴",
+    slug: "kn",
+  },
 ];
 
 interface LanguageCategoriesNavProps {
