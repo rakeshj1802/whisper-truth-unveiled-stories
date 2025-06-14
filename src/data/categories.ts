@@ -3,65 +3,82 @@ export interface Category {
   id: string;
   name: string;
   icon: string;
-  description: string;
-  subtitle: string; // Added new subtitle field
-  href: string;
-  slug: string;
+  description: string; // Kept for potential future use, e.g., tooltips
+  subtitle: string;    // Kept for potential future use
+  slug: string; // Will be used as the unique key for filtering
+  // href is removed as navigation is changing
 }
 
 export const categories: Category[] = [
   {
-    id: "desires-fantasies",
-    name: "Desires & Fantasies",
-    icon: "🔥",
-    description: "Explore people's hidden sexual urges and fantasies.",
-    subtitle: "Uncover hidden desires, kinks, and intimate fantasies shared anonymously.",
-    href: "/category/desires-fantasies",
-    slug: "desires-fantasies"
+    id: "all",
+    name: "All",
+    icon: "🌍",
+    description: "View all confessions from every category.",
+    subtitle: "Browse the complete collection of shared stories and experiences.",
+    slug: "all"
   },
   {
     id: "love-lust",
     name: "Love & Lust",
-    icon: "💔",
-    description: "Stories of love, heartbreak, passion, and betrayal.",
-    subtitle: "Navigate the complex world of love, lust, heartbreak, and passionate encounters.",
-    href: "/category/love-lust",
+    icon: "💖",
+    description: "Stories of romance, passion, and attraction.",
+    subtitle: "Explore tales of affection, desire, and intimate connections.",
     slug: "love-lust"
   },
   {
-    id: "secrets-scandals",
-    name: "Secrets & Scandals",
-    icon: "😶",
-    description: "Dark secrets, taboo confessions, and controversial moments.",
-    subtitle: "Delve into a realm of dark secrets, taboo confessions, and shocking scandals.",
-    href: "/category/secrets-scandals",
-    slug: "secrets-scandals"
+    id: "relationships",
+    name: "Relationships",
+    icon: "🔗",
+    description: "Confessions about friendships, family, and partnerships.",
+    subtitle: "Navigate the complexities of human connections and bonds.",
+    slug: "relationships"
   },
   {
-    id: "mind-emotions",
-    name: "Mind & Emotions",
+    id: "secrets",
+    name: "Secrets",
+    icon: "🤫",
+    description: "Hidden truths, concealed actions, and untold stories.",
+    subtitle: "Uncover closely guarded secrets and confidential admissions.",
+    slug: "secrets"
+  },
+  {
+    id: "regrets",
+    name: "Regrets",
+    icon: "😔",
+    description: "Reflections on past mistakes and wished-for do-overs.",
+    subtitle: "Read about moments of remorse and lessons learned too late.",
+    slug: "regrets"
+  },
+  {
+    id: "mental-health",
+    name: "Mental Health",
     icon: "🧠",
-    description: "Mental health struggles, growth, and emotional confessions.",
-    subtitle: "Share and discover personal journeys of mental health, emotional growth, and heartfelt confessions.",
-    href: "/category/mind-emotions",
-    slug: "mind-emotions"
+    description: "Journeys through emotional well-being, struggles, and growth.",
+    subtitle: "Stories of resilience, vulnerability, and the inner workings of the mind.",
+    slug: "mental-health"
   },
   {
-    id: "fiction-roleplay",
-    name: "Fantasy & Fiction",
-    icon: "🎭",
-    description: "Fictional, roleplay, and imaginative storytelling.",
-    subtitle: "Dive into worlds of imagination, roleplay, and captivating fictional narratives.",
-    href: "/category/fiction-roleplay",
-    slug: "fiction-roleplay"
+    id: "life-experiences",
+    name: "Life Experiences",
+    icon: "✈️",
+    description: "Diverse accounts of personal events, milestones, and daily life.",
+    subtitle: "Discover a wide range of human experiences, big and small.",
+    slug: "life-experiences"
   },
-  { 
-    id: "audio-confessions",
-    name: "Audio Confessions",
-    icon: "📼",
-    description: "Voice-recorded stories with raw emotion and depth.",
-    subtitle: "Listen to raw, voice-recorded stories, bringing confessions to life with depth and emotion.",
-    href: "/category/audio-confessions",
-    slug: "audio-confessions"
+  {
+    id: "dark-thoughts",
+    name: "Dark Thoughts",
+    icon: "💭",
+    description: "Exploring deeper, sometimes unsettling, thoughts and feelings.",
+    subtitle: "Delve into the more obscure and intense aspects of human consciousness.",
+    slug: "dark-thoughts"
   }
+  // Removed old categories like "Desires & Fantasies", "Secrets & Scandals", "Fantasy & Fiction", "Audio Confessions"
+  // to align with the user's new list.
+  // The original "Desires & Fantasies" maps to "Dark Thoughts".
+  // "Secrets & Scandals" maps to "Secrets".
+  // "Mind & Emotions" maps to "Mental Health".
+  // "Fantasy & Fiction" and "Audio Confessions" don't have direct new counterparts in the user's list for filtering,
+  // so confessions previously in these would need re-categorization if they are to appear in the new filter system.
 ];

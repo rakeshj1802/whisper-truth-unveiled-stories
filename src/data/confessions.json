@@ -15,7 +15,7 @@
       {"id": "c1-1", "user": "UserA", "text": "That's a tough spot to be in.", "time": "1h ago"},
       {"id": "c1-2", "user": "UserB", "text": "Honesty might be the best policy long-term.", "time": "30m ago"}
     ],
-    "categorySlug": "secrets-scandals"
+    "category": "Secrets" 
   },
   {
     "id": "2",
@@ -29,7 +29,7 @@
     "avatarColor": "bg-pink-500",
     "likes": 25,
     "comments": [],
-    "categorySlug": "love-heartbreak"
+    "category": "Love & Lust" 
   },
   {
     "id": "3",
@@ -45,7 +45,7 @@
     "comments": [
         {"id": "c3-1", "user": "UserC", "text": "Your well-being is more important than any job.", "time": "2h ago"}
     ],
-    "categorySlug": "life-emotions"
+    "category": "Life Experiences" 
   },
   {
     "id": "4",
@@ -59,7 +59,7 @@
     "avatarColor": "bg-orange-500",
     "likes": 18,
     "comments": [],
-    "categorySlug": "secrets-scandals"
+    "category": "Secrets" 
   },
   {
     "id": "5",
@@ -73,7 +73,7 @@
     "avatarColor": "bg-red-500",
     "likes": 8,
     "comments": [],
-    "categorySlug": "secrets-scandals"
+    "category": "Secrets" 
   },
   {
     "id": "6",
@@ -87,7 +87,7 @@
     "avatarColor": "bg-purple-500",
     "likes": 55,
     "comments": [],
-    "categorySlug": "life-emotions"
+    "category": "Relationships" 
   },
   {
     "id": "7",
@@ -101,7 +101,7 @@
     "avatarColor": "bg-indigo-500",
     "likes": 30,
     "comments": [],
-    "categorySlug": "life-emotions"
+    "category": "Mental Health" 
   },
   {
     "id": "8",
@@ -115,7 +115,7 @@
     "avatarColor": "bg-cyan-500",
     "likes": 72,
     "comments": [],
-    "categorySlug": "secrets-scandals"
+    "category": "Secrets" 
   },
   {
     "id": "9",
@@ -129,7 +129,7 @@
     "avatarColor": "bg-yellow-500",
     "likes": 5,
     "comments": [],
-    "categorySlug": "desires-fantasies"
+    "category": "Dark Thoughts" 
   },
   {
     "id": "10",
@@ -143,7 +143,7 @@
     "avatarColor": "bg-rose-500",
     "likes": 33,
     "comments": [],
-    "categorySlug": "love-heartbreak"
+    "category": "Love & Lust" 
   },
   {
     "id": "11",
@@ -157,7 +157,7 @@
     "avatarColor": "bg-teal-500",
     "likes": 45,
     "comments": [],
-    "categorySlug": "desires-fantasies"
+    "category": "Life Experiences" 
   },
   {
     "id": "12",
@@ -171,7 +171,7 @@
     "avatarColor": "bg-lime-500",
     "likes": 18,
     "comments": [],
-    "categorySlug": "fiction-roleplay"
+    "category": "Life Experiences" 
   },
   {
     "id": "13",
@@ -185,7 +185,7 @@
     "avatarColor": "bg-fuchsia-500",
     "likes": 33,
     "comments": [],
-    "categorySlug": "first-times-experiences"
+    "category": "Life Experiences" 
   },
   {
     "id": "14",
@@ -199,6 +199,6 @@
     "avatarColor": "bg-sky-500",
     "likes": 20,
     "comments": [],
-    "categorySlug": "first-times-experiences"
+    "category": "Life Experiences" 
   }
 ]

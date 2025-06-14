@@ -1,15 +1,14 @@
-
 import { useState, useEffect, useCallback } from 'react';
-import confessionsData from '../data/confessions.json'; // Make sure this data has categorySlug
+import confessionsData from '../data/confessions.json';
 import { Confession } from '@/types/confessionTypes';
 
 const INITIAL_VISIBLE_COUNT = 6;
 
 interface UseConfessionsProps {
-  categorySlug?: string;
+  categoryName?: string | null; // Changed from categorySlug to categoryName, 'all' or null/undefined for all
 }
 
-export const useConfessions = ({ categorySlug }: UseConfessionsProps = {}) => {
+export const useConfessions = ({ categoryName }: UseConfessionsProps = {}) => {
   const [allConfessionsInHook, setAllConfessionsInHook] = useState<Confession[]>([]);
   const [displayedConfessions, setDisplayedConfessions] = useState<Confession[]>([]);
   const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
@@ -21,22 +20,21 @@ export const useConfessions = ({ categorySlug }: UseConfessionsProps = {}) => {
 
   const loadInitialConfessions = useCallback(() => {
     setIsLoading(true);
-    console.log(`Loading confessions for category: ${categorySlug}`);
+    console.log(`Loading confessions for category NAME: ${categoryName}`);
     setTimeout(() => {
       const typedConfessionsData = confessionsData as Confession[];
       
       let filteredConfessions = typedConfessionsData;
-      if (categorySlug) {
-        // Ensure confessions.json has 'categorySlug' field matching the route slug
+      if (categoryName && categoryName.toLowerCase() !== 'all') {
         filteredConfessions = typedConfessionsData.filter(
-          confession => confession.categorySlug === categorySlug
+          confession => confession.category === categoryName
         );
-        console.log(`Found ${filteredConfessions.length} confessions for slug ${categorySlug}`);
+        console.log(`Found ${filteredConfessions.length} confessions for category name ${categoryName}`);
       } else {
-        console.log(`No category slug, found ${filteredConfessions.length} total confessions.`);
+        console.log(`Category is "All" or not specified, found ${filteredConfessions.length} total confessions.`);
       }
       
-      setAllConfessionsInHook(filteredConfessions); // Store all (potentially filtered) confessions
+      setAllConfessionsInHook(filteredConfessions);
       
       const shuffled = [...filteredConfessions].sort(() => Math.random() - 0.5);
       setDisplayedConfessions(shuffled);
@@ -50,11 +48,11 @@ export const useConfessions = ({ categorySlug }: UseConfessionsProps = {}) => {
       }
       setIsLoading(false);
     }, 500);
-  }, [categorySlug, currentAudio]); // Add categorySlug to dependencies
+  }, [categoryName, currentAudio]);
 
   useEffect(() => {
     loadInitialConfessions();
-  }, [loadInitialConfessions]); // This will re-run if categorySlug changes
+  }, [loadInitialConfessions]);
 
   const toggleExpanded = (id: string) => {
     setExpandedCards(prev => {
@@ -101,14 +99,13 @@ export const useConfessions = ({ categorySlug }: UseConfessionsProps = {}) => {
   };
 
   const refreshFeed = () => {
-    // loadInitialConfessions will use the current categorySlug from its closure
     loadInitialConfessions();
   };
   
   const isLoadingInitial = isLoading && displayedConfessions.length === 0;
 
   return {
-    confessions: displayedConfessions, // Use displayedConfessions for rendering
+    confessions: displayedConfessions,
     expandedCards,
     playingAudio,
     visibleCount,
@@ -118,7 +115,7 @@ export const useConfessions = ({ categorySlug }: UseConfessionsProps = {}) => {
     toggleAudio,
     loadMore,
     refreshFeed,
-    totalConfessionsCount: allConfessionsInHook.length, // Count based on (filtered) source
+    totalConfessionsCount: allConfessionsInHook.length,
     currentAudio
   };
 };

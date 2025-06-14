@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useConfessions } from '@/hooks/useConfessions';
@@ -5,7 +6,11 @@ import ConfessionsFeedHeader from './confession/feed/ConfessionsFeedHeader';
 import ConfessionsGrid from './confession/feed/ConfessionsGrid';
 import ConfessionsFeedControls from './confession/feed/ConfessionsFeedControls';
 
-const ConfessionsFeed = () => {
+interface ConfessionsFeedProps {
+  categoryName?: string | null; // Make categoryName optional, defaults to "All" in useConfessions
+}
+
+const ConfessionsFeed: React.FC<ConfessionsFeedProps> = ({ categoryName }) => {
   const { t } = useLanguage();
   const {
     confessions,
@@ -20,10 +25,9 @@ const ConfessionsFeed = () => {
     refreshFeed,
     totalConfessionsCount,
     currentAudio
-  } = useConfessions();
+  } = useConfessions({ categoryName: categoryName || "All" }); // Pass categoryName to hook, default to "All"
 
   useEffect(() => {
-    // Cleanup audio when the component unmounts or confessions data changes significantly
     return () => {
       if (currentAudio) {
         currentAudio.pause();
@@ -31,15 +35,25 @@ const ConfessionsFeed = () => {
     };
   }, [currentAudio]);
 
+  const feedTitle = categoryName && categoryName.toLowerCase() !== 'all' 
+    ? `${categoryName} Confessions` 
+    : t('feed.title');
+  
+  // Subtitle could also be dynamic if desired, or use a generic one
+  const feedSubtitle = categoryName && categoryName.toLowerCase() !== 'all'
+    ? `Browse stories shared in the ${categoryName} category`
+    : t('feed.subtitle');
+
+
   return (
     <section id="confessions-feed" className="py-20 px-4 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800">
       <div className="max-w-7xl mx-auto">
         <ConfessionsFeedHeader
-          title={t('feed.title')}
-          subtitle={t('feed.subtitle')}
+          title={feedTitle}
+          subtitle={feedSubtitle}
           confessionsCount={totalConfessionsCount}
           onRefresh={refreshFeed}
-          isLoading={isLoadingInitial || isLoadingMore} // Combined loading state for refresh button
+          isLoading={isLoadingInitial || isLoadingMore}
         />
 
         <ConfessionsGrid
@@ -57,8 +71,8 @@ const ConfessionsFeed = () => {
           totalConfessions={totalConfessionsCount}
           onLoadMore={loadMore}
           isLoadingMore={isLoadingMore}
-          loadMoreText="load more confessions" // Directly passing the new text
-          loadingText={t('feed.loading')} // Assuming you have 'feed.loading' translation
+          loadMoreText={t('feed.loadMore')} // Changed from direct string
+          loadingText={t('feed.loading')}
         />
       </div>
     </section>

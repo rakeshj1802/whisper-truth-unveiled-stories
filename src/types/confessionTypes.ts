@@ -9,5 +9,5 @@ export interface Confession {
   timePosted: string;
   audioUrl?: string | null;
   avatarColor: string;
-  categorySlug: string; // Added category slug
+  category: string; // Changed from categorySlug to category (name)
 }
