@@ -6,7 +6,7 @@ const Hero = () => {
   const [currentText, setCurrentText] = useState(0);
   const dynamicTexts = [
     "Read Raw, Real Anonymous Confessions",
-    "Unfiltered Stories from Real People",
+    "Unfiltered Stories from Real People", 
     "Authentic Voices, No Judgment",
     "True Stories, Told Anonymously"
   ];
