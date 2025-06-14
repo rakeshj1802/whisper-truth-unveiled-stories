@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { RefreshCw } from 'lucide-react';
 
 interface ConfessionsFeedHeaderProps {
-  title: string;
+  title?: string; // Made title optional
   subtitle: string;
   confessionsCount: number;
   onRefresh: () => void;
@@ -21,9 +21,11 @@ const ConfessionsFeedHeader: React.FC<ConfessionsFeedHeaderProps> = ({
   return (
     <div className="text-center mb-16">
       <div className="flex items-center justify-center gap-4 mb-6">
-        <h2 className="font-playfair text-4xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-          {title}
-        </h2>
+        {title && ( // Conditionally render the title
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+            {title}
+          </h2>
+        )}
         <Button
           onClick={onRefresh}
           variant="ghost"
@@ -46,3 +48,4 @@ const ConfessionsFeedHeader: React.FC<ConfessionsFeedHeaderProps> = ({
 };
 
 export default ConfessionsFeedHeader;
+
