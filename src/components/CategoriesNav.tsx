@@ -16,7 +16,8 @@ interface CategoriesNavProps {
 
 const CategoriesNav: React.FC<CategoriesNavProps> = ({ selectedCategorySlug, onSelectCategory }) => {
   return (
-    <nav className="bg-gray-800/50 backdrop-blur-md py-3 border-b border-t border-gray-700 sticky top-0 z-40">
+    <nav className="bg-gray-800/50 backdrop-blur-md py-3 border-b border-t border-gray-700">
+      {/* Removed sticky top-0 z-40 so nav bar is no longer sticky */}
       <div className="max-w-6xl mx-auto px-4">
         <NavigationMenu>
           <NavigationMenuList className="flex flex-wrap justify-center gap-1 md:gap-2">
@@ -49,4 +50,3 @@ const CategoriesNav: React.FC<CategoriesNavProps> = ({ selectedCategorySlug, onS
 };
 
 export default CategoriesNav;
-

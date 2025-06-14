@@ -77,7 +77,7 @@ export const useConfessions = ({ categoryName }: UseConfessionsProps = {}) => {
       audio.play().catch(error => console.error("Error playing audio:", error));
       setPlayingAudio(confessionId);
       setCurrentAudio(audio);
-      
+
       audio.onended = () => {
         setPlayingAudio(null);
         setCurrentAudio(null);
