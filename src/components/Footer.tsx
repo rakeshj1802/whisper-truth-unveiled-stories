@@ -76,9 +76,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <Link to="/community-guidelines" className="text-gray-400 hover:text-purple-400 transition-colors">
                   Community Guidelines
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -98,9 +98,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <Link to="/community-guidelines" className="text-gray-400 hover:text-purple-400 transition-colors">
                   Content Policy
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" onClick={openFeedbackForm} className="text-gray-400 hover:text-purple-400 transition-colors cursor-pointer">

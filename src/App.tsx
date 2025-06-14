@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import About from "./pages/About"; // Import the new About page
+import CommunityGuidelines from "./pages/CommunityGuidelines"; // Import the new Community Guidelines page
 
 const queryClient = new QueryClient();
 
@@ -26,7 +26,8 @@ const App = () => (
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/about" element={<About />} /> {/* Add route for About page */}
+            <Route path="/about" element={<About />} />
+            <Route path="/community-guidelines" element={<CommunityGuidelines />} /> {/* Add route for Community Guidelines page */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -37,4 +38,3 @@ const App = () => (
 );
 
 export default App;
-
