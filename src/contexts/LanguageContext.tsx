@@ -1,11 +1,10 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'mr' | 'gu' | 'kn' | 'ml' | 'or' | 'pa' | 'as' | 'ur';
 
 interface Translations {
   [key: string]: {
-    [key in Language]: string;
+    [key in Language]?: string; // Made language optional in translations to reflect 'en' focus
   };
 }
 
@@ -33,7 +32,7 @@ const translations: Translations = {
     te: 'ఫిల్టర్ చేయని గాత్రలు. సైన్ అప్‌లు లేవు. కేవలం సత్యం. ముఖ్యమైన కథలు.',
     bn: 'অফিল্টার কণ্ঠস্বর। কোনো সাইন আপ নেই। শুধু সত্য। গুরুত্বপূর্ণ গল্প।',
     mr: 'अनफिल्टर आवाज। साइनअप नाही। फक्त सत्य। महत्त्वाच्या गोष्टी।',
-    gu: 'અનફિલ્ટર અવાજો. કોઈ સાઇન અપ નથી. માત્ર સત્य. મહત્વપૂર્ણ વાર્તાઓ.',
+    gu: 'અનફિલ્ટર અવાજો. કોઈ સાઇન અપ નથી. માત્ર સત્yat. મહત્વપૂર્ણ વાર્તાઓ.',
     kn: 'ಫಿಲ್ಟರ್ ಮಾಡದ ಧ್ವನಿಗಳು. ಸೈನ್ ಅಪ್ ಇಲ್ಲ. ಕೇವಲ ಸತ್ಯ. ಪ್ರಮುಖ ಕಥೆಗಳು.',
     ml: 'ഫിൽട്ടർ ചെയ്യാത്ത ശബ്ദങ്ങൾ. സൈൻ അപ്പുകളില്ല. വെറും സത്യം. പ്രധാനപ്പെട്ട കഥകൾ.',
     or: 'ଅନଫିଲ୍ଟର ସ୍ୱର। କୌଣସି ସାଇନ ଅପ ନାହିଁ। କେବଳ ସତ୍ୟ। ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ କାହାଣୀ।',
@@ -136,17 +135,25 @@ const translations: Translations = {
 
 interface LanguageContextType {
   language: Language;
-  setLanguage: (lang: Language) => void;
+  setLanguage: (lang: Language) => void; // Still typed but will be a no-op
   t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  // Language is fixed to 'en'
+  const language: Language = 'en'; 
+  
+  // setLanguage will be a no-op function, so it doesn't need to use useState's setter
+  const setLanguage = (_lang: Language) => {
+    // This function now does nothing, effectively fixing the language.
+    // console.warn("Language selection is disabled. Defaulting to English.");
+  };
 
   const t = (key: string): string => {
-    return translations[key]?.[language] || key;
+    // Always attempt to return the English translation.
+    return translations[key]?.['en'] || translations[key]?.[language] || key;
   };
 
   return (

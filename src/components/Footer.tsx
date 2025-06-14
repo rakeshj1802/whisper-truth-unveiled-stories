@@ -1,31 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const { language, setLanguage } = useLanguage();
 
   const openFeedbackForm = () => {
     window.open('https://forms.gle/xY853C2WVSmivL8Z9', '_blank');
   };
-
-  const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'hi', name: 'हिन्दी' },
-    { code: 'ta', name: 'தமிழ்' },
-    { code: 'te', name: 'తెలుగు' },
-    { code: 'bn', name: 'বাংলা' },
-    { code: 'mr', name: 'मराठी' },
-    { code: 'gu', name: 'ગુજરાતી' },
-    { code: 'kn', name: 'ಕನ್ನಡ' },
-    { code: 'ml', name: 'മലയാളം' },
-    { code: 'or', name: 'ଓଡ଼ିଆ' },
-    { code: 'pa', name: 'ਪੰਜਾਬੀ' },
-    { code: 'as', name: 'অসমীয়া' },
-    { code: 'ur', name: 'اردو' }
-  ];
 
   return (
     <footer className="bg-gray-800 border-t border-gray-700">
@@ -120,22 +102,6 @@ const Footer = () => {
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
             © {currentYear} ConfessionX. All rights reserved.
           </p>
-          
-          {/* Language Switcher */}
-          <div className="flex items-center space-x-4">
-            <span className="text-gray-500 text-sm">Language:</span>
-            <select 
-              value={language}
-              onChange={(e) => setLanguage(e.target.value as any)}
-              className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded px-3 py-1 focus:outline-none focus:border-purple-500"
-            >
-              {languages.map((lang) => (
-                <option key={lang.code} value={lang.code}>
-                  {lang.name}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
       </div>
     </footer>
