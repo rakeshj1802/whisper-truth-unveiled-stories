@@ -14,7 +14,8 @@
     "comments": [
       {"id": "c1-1", "user": "UserA", "text": "That's a tough spot to be in.", "time": "1h ago"},
       {"id": "c1-2", "user": "UserB", "text": "Honesty might be the best policy long-term.", "time": "30m ago"}
-    ]
+    ],
+    "categorySlug": "secrets-scandals"
   },
   {
     "id": "2",
@@ -27,7 +28,8 @@
     "audioUrl": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
     "avatarColor": "bg-pink-500",
     "likes": 25,
-    "comments": []
+    "comments": [],
+    "categorySlug": "love-heartbreak"
   },
   {
     "id": "3",
@@ -42,7 +44,8 @@
     "likes": 42,
     "comments": [
         {"id": "c3-1", "user": "UserC", "text": "Your well-being is more important than any job.", "time": "2h ago"}
-    ]
+    ],
+    "categorySlug": "life-emotions"
   },
   {
     "id": "4",
@@ -55,7 +58,8 @@
     "audioUrl": null,
     "avatarColor": "bg-orange-500",
     "likes": 18,
-    "comments": []
+    "comments": [],
+    "categorySlug": "secrets-scandals"
   },
   {
     "id": "5",
@@ -68,7 +72,8 @@
     "audioUrl": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
     "avatarColor": "bg-red-500",
     "likes": 8,
-    "comments": []
+    "comments": [],
+    "categorySlug": "secrets-scandals"
   },
   {
     "id": "6",
@@ -81,7 +86,8 @@
     "audioUrl": null,
     "avatarColor": "bg-purple-500",
     "likes": 55,
-    "comments": []
+    "comments": [],
+    "categorySlug": "life-emotions"
   },
   {
     "id": "7",
@@ -94,7 +100,8 @@
     "audioUrl": null,
     "avatarColor": "bg-indigo-500",
     "likes": 30,
-    "comments": []
+    "comments": [],
+    "categorySlug": "life-emotions"
   },
   {
     "id": "8",
@@ -107,7 +114,8 @@
     "audioUrl": null,
     "avatarColor": "bg-cyan-500",
     "likes": 72,
-    "comments": []
+    "comments": [],
+    "categorySlug": "secrets-scandals"
   },
   {
     "id": "9",
@@ -120,7 +128,8 @@
     "audioUrl": null,
     "avatarColor": "bg-yellow-500",
     "likes": 5,
-    "comments": []
+    "comments": [],
+    "categorySlug": "desires-fantasies"
   },
   {
     "id": "10",
@@ -133,6 +142,63 @@
     "audioUrl": null,
     "avatarColor": "bg-rose-500",
     "likes": 33,
-    "comments": []
+    "comments": [],
+    "categorySlug": "love-heartbreak"
+  },
+  {
+    "id": "11",
+    "title": "My deepest desire is to travel the world solo",
+    "content": "I've always dreamed of quitting my job, packing a backpack, and just exploring the world on my own. No set plans, no timelines, just pure adventure. I fantasize about seeing ancient ruins, hiking breathtaking mountains, and immersing myself in different cultures. But I'm scared. Scared of being lonely, scared of the unknown, scared of what people will think. My family and friends think it's a crazy idea. I have a stable job and a comfortable life, but there's this yearning inside me for something more. I keep telling myself 'one day', but I'm afraid 'one day' will never come if I don't take the leap.",
+    "preview": "I've always dreamed of quitting my job, packing a backpack, and just exploring the world on my own...",
+    "age": 29,
+    "gender": "F",
+    "timePosted": "6 hours ago",
+    "audioUrl": null,
+    "avatarColor": "bg-teal-500",
+    "likes": 45,
+    "comments": [],
+    "categorySlug": "desires-fantasies"
+  },
+  {
+    "id": "12",
+    "title": "I roleplay as a different person online",
+    "content": "In my real life, I'm quite shy and introverted. But online, in certain communities, I've created this whole other persona. She's confident, outgoing, and adventurous – everything I wish I could be. I spend hours roleplaying, creating stories, and interacting with others as this character. It's an escape for me, a way to explore different sides of myself. Sometimes I worry that I'm becoming too attached to this fictional identity and losing touch with who I really am. Is it harmless fun, or am I using it to avoid dealing with my real-life insecurities?",
+    "preview": "In my real life, I'm quite shy and introverted. But online, in certain communities, I've created this whole other persona...",
+    "age": 25,
+    "gender": "NB",
+    "timePosted": "10 hours ago",
+    "audioUrl": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+    "avatarColor": "bg-lime-500",
+    "likes": 18,
+    "comments": [],
+    "categorySlug": "fiction-roleplay"
+  },
+  {
+    "id": "13",
+    "title": "My first kiss was a disaster",
+    "content": "I had built up my first kiss to be this magical, movie-like moment. In reality, it was anything but. It was awkward, clumsy, and involved a lot of teeth-clashing. We were both so nervous. I remember thinking, 'Is this it? Is this what everyone raves about?' For a while, I was convinced I was a terrible kisser. Looking back, it's kind of a funny story, but at the time, it was mortifying. It definitely wasn't the romantic experience I had read about in books or seen in movies. At least my second first kiss was much better!",
+    "preview": "I had built up my first kiss to be this magical, movie-like moment. In reality, it was anything but...",
+    "age": 22,
+    "gender": "F",
+    "timePosted": "1 day ago",
+    "audioUrl": null,
+    "avatarColor": "bg-fuchsia-500",
+    "likes": 33,
+    "comments": [],
+    "categorySlug": "first-times-experiences"
+  },
+  {
+    "id": "14",
+    "title": "I lost my virginity to a stranger I met at a bar",
+    "content": "It wasn't planned at all. I was out with friends, had a bit too much to drink, and ended up talking to this person at the bar. There was chemistry, and one thing led to another, and we went back to their place. I don't regret it, per se, as it was consensual and safe, but it wasn't the romantic or meaningful experience I thought my first time would be. It was just... a thing that happened. Part of me wishes it had been with someone I cared about, but another part of me is okay with it just being a spontaneous experience. It's just one of those 'first times' that didn't live up to the hype.",
+    "preview": "It wasn't planned at all. I was out with friends, had a bit too much to drink, and ended up talking to this person...",
+    "age": 24,
+    "gender": "M",
+    "timePosted": "2 days ago",
+    "audioUrl": null,
+    "avatarColor": "bg-sky-500",
+    "likes": 20,
+    "comments": [],
+    "categorySlug": "first-times-experiences"
   }
 ]

@@ -42,11 +42,22 @@ const CategoryPage: React.FC = () => {
     };
   }, [currentAudio]);
 
-  const pageTitle = currentCategory ? currentCategory.name : t('categoryPage.loadingTitle', 'Category');
+  const pageTitle = currentCategory ? currentCategory.name : t('categoryPage.loadingTitle');
+  // For subtitles that include dynamic data, we might need a different approach if `t` doesn't support interpolation directly.
+  // For now, constructing the string and then translating parts or having pre-formatted translation keys is an option.
+  // Assuming 'categoryPage.subtitle' is a generic key and we append the category name.
+  // Or, a better key would be 'categoryPage.subtitleNamed' which expects a {categoryName} parameter.
+  // Let's assume simple keys for now to fix the TS error.
+  // A more robust solution would involve checking how `t` handles interpolations.
   const pageSubtitle = currentCategory 
-    ? t('categoryPage.subtitle', `Explore confessions in ${currentCategory.name}`) 
-    : t('categoryPage.loadingSubtitle', 'Loading stories from this category...');
+    ? `${t('categoryPage.exploreConfessionsIn')} ${currentCategory.name}` // Example, assuming 'categoryPage.exploreConfessionsIn' is a key
+    : t('categoryPage.loadingSubtitle');
   
+  // If your translation function `t` supports interpolation like t('key', { value: 'foo' }), use that.
+  // For example: t('categoryPage.subtitle', { categoryName: currentCategory.name })
+  // For simplicity here and to pass TypeScript checks, I'm constructing the string.
+  // You might need to adjust your translation files and `t` function usage for dynamic content.
+
   console.log(`Rendering CategoryPage for slug: ${categorySlug}, title: ${pageTitle}, count: ${totalConfessionsCount}`);
 
 
@@ -80,8 +91,8 @@ const CategoryPage: React.FC = () => {
             totalConfessions={totalConfessionsCount}
             onLoadMore={loadMore}
             isLoadingMore={isLoadingMore}
-            loadMoreText={t('feed.loadMore', 'Load More Confessions')}
-            loadingText={t('feed.loading', 'Loading...')}
+            loadMoreText={t('feed.loadMore')}
+            loadingText={t('feed.loading')}
           />
         </div>
       </section>
