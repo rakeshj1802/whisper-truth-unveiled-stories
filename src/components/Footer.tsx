@@ -1,8 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Link } from "react-router-dom"; // Import Link for internal navigation
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -72,7 +71,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <Link to="/profile" className="text-gray-400 hover:text-purple-400 transition-colors"> {/* Changed to Link for profile/about */}
+                <Link to="/profile" className="text-gray-400 hover:text-purple-400 transition-colors">
                   About Anonymity
                 </Link>
               </li>
@@ -89,14 +88,14 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-white mb-4">Legal & Support</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/privacy-policy" className="text-gray-400 hover:text-purple-400 transition-colors"> {/* Added Link to Privacy Policy */}
+                <Link to="/privacy-policy" className="text-gray-400 hover:text-purple-400 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <Link to="/terms-of-service" className="text-gray-400 hover:text-purple-400 transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
@@ -144,4 +143,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

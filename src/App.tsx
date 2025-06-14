@@ -8,7 +8,8 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage";
-import PrivacyPolicy from "./pages/PrivacyPolicy"; // Import the new page
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService"; // Import the new Terms of Service page
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* Add route for Privacy Policy */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} /> {/* Add route for Terms of Service */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
