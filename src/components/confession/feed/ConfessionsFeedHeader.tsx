@@ -21,15 +21,15 @@ const ConfessionsFeedHeader: React.FC<ConfessionsFeedHeaderProps> = ({
   return (
     <div className="text-center mb-16">
       <div className="flex items-center justify-center gap-4 mb-6">
-        {title ? ( // If a title is provided and not an empty string
+        {/* Render H2 only if title is a non-empty string */}
+        {title && title.trim() !== "" ? (
           <h2 className="font-playfair text-4xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
             {title}
           </h2>
         ) : (
-          // If no title is provided (e.g., for the "All" category view), display this custom text
-          <p className="text-lg text-gray-400 italic">
-            Real stories from real people. Read them, listen to them, feel them.
-          </p>
+          // If title is empty or not provided, render nothing in its place.
+          // The subtitle will handle the "Real stories..." message.
+          null
         )}
         <Button
           onClick={onRefresh}
