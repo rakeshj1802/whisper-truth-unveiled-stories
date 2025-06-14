@@ -1,10 +1,9 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Play, Pause, Eye, Clock, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import confessionsData from '../data/confessions.json';
+import ConfessionCard from './confession/ConfessionCard';
 
 interface Confession {
   id: string;
@@ -27,7 +26,6 @@ const ConfessionsFeed = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Simulate loading and add some randomization to make it more dynamic
     setIsLoading(true);
     setTimeout(() => {
       const shuffled = [...confessionsData].sort(() => Math.random() - 0.5);
@@ -84,33 +82,30 @@ const ConfessionsFeed = () => {
     }, 500);
   };
 
-  const getInitials = (gender: string) => {
-    return gender === 'M' ? 'M' : 'F';
-  };
-
   return (
-    <section id="confessions-feed" className="py-20 px-4 bg-gray-900">
-      <div className="max-w-6xl mx-auto">
+    <section id="confessions-feed" className="py-20 px-4 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800">
+      <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white">
+            <h2 className="font-playfair text-4xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
               Recent Confessions
             </h2>
             <Button
               onClick={refreshFeed}
               variant="ghost"
               size="sm"
-              className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 p-2"
+              className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 p-3 rounded-full transition-all duration-300 hover:scale-110"
               disabled={isLoading}
             >
-              <RefreshCw className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-6 h-6 ${isLoading ? 'animate-spin' : ''}`} />
             </Button>
           </div>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Real stories from real people. Read them, listen to them, feel them.
           </p>
-          <div className="mt-4 text-sm text-gray-400">
+          <div className="mt-6 inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full border border-purple-500/30">
+            <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
             {confessions.length} confessions available
           </div>
         </div>
@@ -118,92 +113,29 @@ const ConfessionsFeed = () => {
         {/* Loading State */}
         {isLoading && (
           <div className="text-center mb-8">
-            <div className="inline-flex items-center px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full">
-              <RefreshCw className="w-4 h-4 animate-spin mr-2" />
+            <div className="inline-flex items-center px-6 py-3 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30">
+              <RefreshCw className="w-5 h-5 animate-spin mr-3" />
               Loading confessions...
             </div>
           </div>
         )}
 
         {/* Confessions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
           {confessions.slice(0, visibleCount).map((confession, index) => (
-            <Card 
-              key={confession.id} 
-              className="bg-gray-800 border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 animate-fade-in group"
+            <div
+              key={confession.id}
+              className="animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <CardContent className="p-6">
-                {/* User Info */}
-                <div className="flex items-center mb-4">
-                  <Avatar className="w-10 h-10 mr-3">
-                    <AvatarFallback className={`${confession.avatarColor} text-white font-semibold`}>
-                      {getInitials(confession.gender)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <div className="flex items-center text-sm text-gray-400">
-                      <span>{confession.gender}, {confession.age}</span>
-                      <Clock className="w-3 h-3 mx-2" />
-                      <span>{confession.timePosted}</span>
-                    </div>
-                  </div>
-                  {confession.audioUrl && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => toggleAudio(confession.audioUrl!, confession.id)}
-                      className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 p-2"
-                    >
-                      {playingAudio === confession.id ? (
-                        <Pause className="w-4 h-4" />
-                      ) : (
-                        <Play className="w-4 h-4" />
-                      )}
-                    </Button>
-                  )}
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-semibold text-white mb-3 line-clamp-2 group-hover:text-purple-300 transition-colors">
-                  {confession.title}
-                </h3>
-
-                {/* Content */}
-                <div className="text-gray-300 mb-4">
-                  {expandedCards.has(confession.id) ? (
-                    <p className="text-sm leading-relaxed">{confession.content}</p>
-                  ) : (
-                    <p className="text-sm leading-relaxed line-clamp-3">{confession.preview}</p>
-                  )}
-                </div>
-
-                {/* Audio Player */}
-                {confession.audioUrl && (
-                  <div className="mb-4">
-                    <audio 
-                      controls 
-                      className="w-full h-8 rounded bg-gray-700"
-                      style={{ accentColor: '#a855f7' }}
-                    >
-                      <source src={confession.audioUrl} type="audio/mpeg" />
-                      Your browser does not support the audio element.
-                    </audio>
-                  </div>
-                )}
-
-                {/* Read More Button */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => toggleExpanded(confession.id)}
-                  className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 p-0 h-auto font-medium"
-                >
-                  <Eye className="w-4 h-4 mr-2" />
-                  {expandedCards.has(confession.id) ? 'Show Less' : 'Read Full'}
-                </Button>
-              </CardContent>
-            </Card>
+              <ConfessionCard
+                confession={confession}
+                isExpanded={expandedCards.has(confession.id)}
+                onToggleExpanded={() => toggleExpanded(confession.id)}
+                playingAudio={playingAudio}
+                onToggleAudio={toggleAudio}
+              />
+            </div>
           ))}
         </div>
 
@@ -215,11 +147,11 @@ const ConfessionsFeed = () => {
               variant="outline"
               size="lg"
               disabled={isLoading}
-              className="border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
+              className="border-2 border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white px-10 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
             >
               {isLoading ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin mr-2" />
+                  <RefreshCw className="w-5 h-5 animate-spin mr-3" />
                   Loading...
                 </>
               ) : (
@@ -230,8 +162,10 @@ const ConfessionsFeed = () => {
         )}
 
         {/* Stats */}
-        <div className="text-center mt-8 text-sm text-gray-500">
-          Showing {Math.min(visibleCount, confessions.length)} of {confessions.length} confessions
+        <div className="text-center mt-8">
+          <div className="inline-flex items-center px-4 py-2 bg-gray-800/50 text-gray-400 rounded-full border border-gray-700">
+            Showing {Math.min(visibleCount, confessions.length)} of {confessions.length} confessions
+          </div>
         </div>
       </div>
     </section>
