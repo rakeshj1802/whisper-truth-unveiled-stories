@@ -1,12 +1,23 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import Hero from '../components/Hero';
+import ConfessionsFeed from '../components/ConfessionsFeed';
+import SubmitSection from '../components/SubmitSection';
+import AdSpace from '../components/AdSpace';
+import ReferralBanner from '../components/ReferralBanner';
+import Footer from '../components/Footer';
+import MobileNavBar from '../components/MobileNavBar';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gray-900">
+      <Hero />
+      <ConfessionsFeed />
+      <AdSpace type="banner" />
+      <SubmitSection />
+      <AdSpace type="square" />
+      <ReferralBanner />
+      <Footer />
+      <MobileNavBar />
     </div>
   );
 };
