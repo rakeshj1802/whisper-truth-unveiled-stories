@@ -12,7 +12,11 @@ const MobileNavBar = () => {
   };
 
   const openSubmissionForm = () => {
-    window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank');
+    window.open('https://forms.gle/dhDrLy9GJSoJrjBc8', '_blank');
+  };
+
+  const openFeedbackForm = () => {
+    window.open('https://forms.gle/xY853C2WVSmivL8Z9', '_blank');
   };
 
   return (
@@ -51,10 +55,11 @@ const MobileNavBar = () => {
         <Button
           variant="ghost"
           size="sm"
+          onClick={openFeedbackForm}
           className="flex flex-col items-center p-2 text-gray-300 hover:text-purple-400 hover:bg-transparent"
         >
           <Info className="w-5 h-5 mb-1" />
-          <span className="text-xs">About</span>
+          <span className="text-xs">Feedback</span>
         </Button>
       </div>
     </div>

@@ -1,0 +1,113 @@
+
+[
+  {
+    "id": "1",
+    "title": "I lied about my college degree for 5 years",
+    "content": "I never actually graduated college but I've been telling everyone, including my employer, that I have a bachelor's degree. I've been living with this lie for 5 years now and I don't know how to come clean. The guilt is eating me alive, especially since I got promoted based on this false qualification. I keep thinking someone will find out and my whole life will come crashing down. I've become really good at my job though, so maybe the degree doesn't even matter anymore? But the lie feels like it's growing bigger every day.",
+    "preview": "I never actually graduated college but I've been telling everyone, including my employer, that I have a bachelor's degree...",
+    "age": 28,
+    "gender": "M",
+    "timePosted": "2 hours ago",
+    "audioUrl": null,
+    "avatarColor": "bg-blue-500"
+  },
+  {
+    "id": "2",
+    "title": "I'm in love with my best friend's spouse",
+    "content": "This is tearing me apart inside. My best friend of 10 years married the most amazing person I've ever met, and I can't stop thinking about them. It started as just admiration, but over the past year it's grown into something much deeper. I catch myself looking forward to group hangouts just to see them, and I feel guilty every single time. I would never act on these feelings because I value my friendship too much, but it's becoming harder to be around them. I'm considering distancing myself from the group, but that would raise questions I can't answer.",
+    "preview": "This is tearing me apart inside. My best friend of 10 years married the most amazing person I've ever met...",
+    "age": 31,
+    "gender": "F",
+    "timePosted": "4 hours ago",
+    "audioUrl": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+    "avatarColor": "bg-pink-500"
+  },
+  {
+    "id": "3",
+    "title": "I secretly hate my 'dream job'",
+    "content": "Everyone thinks I'm living the dream. I work at a prestigious tech company, make great money, and everyone congratulates me on 'making it.' But I absolutely hate going to work every day. The culture is toxic, my manager micromanages everything, and I feel like just a cog in a machine. I used to be passionate about technology, but this job has sucked all the joy out of it. I stay because the money is good and it looks great on my resume, but I feel like I'm slowly dying inside. My family is so proud of me that I can't bear to tell them how miserable I am.",
+    "preview": "Everyone thinks I'm living the dream. I work at a prestigious tech company, make great money...",
+    "age": 26,
+    "gender": "M",
+    "timePosted": "6 hours ago",
+    "audioUrl": null,
+    "avatarColor": "bg-green-500"
+  },
+  {
+    "id": "4",
+    "title": "I accidentally read my daughter's diary",
+    "content": "I was cleaning my 16-year-old daughter's room and knocked over a book. Pages fell out and I saw it was her diary. I know I should have just put it back, but I saw my name and couldn't help myself. What I read broke my heart. She wrote about how she feels like I don't understand her and that she's struggling with anxiety and depression. She also mentioned that she's been cutting herself. I'm devastated that I didn't know she was going through this, but I can't tell her I read her diary. I don't know how to help her without admitting I violated her privacy. I've been trying to be more attentive and supportive, but I feel like I'm walking on eggshells.",
+    "preview": "I was cleaning my 16-year-old daughter's room and knocked over a book. Pages fell out...",
+    "age": 45,
+    "gender": "F",
+    "timePosted": "8 hours ago",
+    "audioUrl": null,
+    "avatarColor": "bg-orange-500"
+  },
+  {
+    "id": "5",
+    "title": "I've been stealing from my workplace",
+    "content": "It started small - just some office supplies here and there. But over the past year, it's escalated. I work at a retail store and I've been taking items, changing prices in the system, and even pocketing cash from returns. I tell myself I deserve it because they pay me barely above minimum wage, but I know it's wrong. I've probably taken around $2000 worth of stuff and money. The worst part is that they're investigating inventory discrepancies and I'm terrified they'll figure out it's me. I want to stop but I've already gone too far. If they catch me, I'll not only lose my job but probably face criminal charges.",
+    "preview": "It started small - just some office supplies here and there. But over the past year, it's escalated...",
+    "age": 23,
+    "gender": "F",
+    "timePosted": "12 hours ago",
+    "audioUrl": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+    "avatarColor": "bg-red-500"
+  },
+  {
+    "id": "6",
+    "title": "I'm secretly glad my toxic friend moved away",
+    "content": "My friend of 8 years moved across the country for a job, and while I acted sad and supportive, I'm actually relieved. She was becoming increasingly toxic and manipulative. She would always make our conversations about herself, guilt-trip me when I couldn't hang out, and criticize my other relationships. She had a way of making me feel bad about myself and my choices. I was too conflict-averse to confront her or end the friendship, so when she announced she was moving, I felt like I was being set free. I feel guilty for feeling this way because she genuinely thinks we're best friends, but my mental health has improved so much since she left.",
+    "preview": "My friend of 8 years moved across the country for a job, and while I acted sad and supportive...",
+    "age": 29,
+    "gender": "F",
+    "timePosted": "1 day ago",
+    "audioUrl": null,
+    "avatarColor": "bg-purple-500"
+  },
+  {
+    "id": "7",
+    "title": "I pretend to be sick to avoid social events",
+    "content": "I've been lying to my friends and family about being sick whenever they invite me to parties, dinners, or gatherings. The truth is, I'm not sick - I just have severe social anxiety that's gotten worse over the years. I used to love being around people, but now the thought of small talk and pretending to be happy exhausts me. I've used every excuse in the book: headaches, stomach bugs, work emergencies. My friends are starting to worry about my health, and some are getting suspicious. I want to tell them the truth, but I'm afraid they'll think I'm making excuses or that I don't want to spend time with them.",
+    "preview": "I've been lying to my friends and family about being sick whenever they invite me to parties...",
+    "age": 24,
+    "gender": "F",
+    "timePosted": "2 days ago",
+    "audioUrl": null,
+    "avatarColor": "bg-indigo-500"
+  },
+  {
+    "id": "8",
+    "title": "I've never told my parents I'm gay",
+    "content": "I'm 32 years old and I've been living a double life for over a decade. My parents are very conservative and religious, and I've heard them make homophobic comments my entire life. I've been in a loving relationship with my partner for 6 years, but my family thinks he's just my roommate. We've talked about getting married, but I can't imagine having a wedding without my family there. At the same time, I can't imagine coming out to them and potentially losing them forever. I've built this elaborate web of lies about dating women, and it's exhausting. I just want to live authentically, but I'm terrified of the consequences.",
+    "preview": "I'm 32 years old and I've been living a double life for over a decade. My parents are very conservative...",
+    "age": 32,
+    "gender": "M",
+    "timePosted": "3 days ago",
+    "audioUrl": null,
+    "avatarColor": "bg-cyan-500"
+  },
+  {
+    "id": "9",
+    "title": "I eat food that's been dropped on the floor",
+    "content": "This is embarrassing, but I have a habit that I know is gross. When I drop food on the floor, even if it's been there for more than 5 seconds, I still eat it. It started as a 'five-second rule' thing, but now I'll eat food that's been on the floor for minutes, especially if it's something expensive or that I was really looking forward to. I've done this at home, at work, and even at restaurants when no one is looking. I know it's unsanitary and potentially dangerous, but I can't seem to stop myself. I grew up poor and was taught never to waste food, so throwing away dropped food feels wrong to me, even though I know I should.",
+    "preview": "This is embarrassing, but I have a habit that I know is gross. When I drop food on the floor...",
+    "age": 27,
+    "gender": "M",
+    "timePosted": "4 days ago",
+    "audioUrl": null,
+    "avatarColor": "bg-yellow-500"
+  },
+  {
+    "id": "10",
+    "title": "I've been having an affair with my neighbor",
+    "content": "I've been married for 15 years, and for the past 8 months, I've been having an affair with my neighbor. It started innocently - we would chat over the fence, help each other with yard work, that sort of thing. But there was always this tension between us. One day when my spouse was out of town, one thing led to another. Now we meet whenever we can, and I'm falling in love with them. The worst part is that our families are friends - we have barbecues together, our kids play together. I feel like a terrible person, but I've never felt more alive. I know I need to end it, but I can't bring myself to do it. I'm destroying my marriage and lying to everyone I care about.",
+    "preview": "I've been married for 15 years, and for the past 8 months, I've been having an affair with my neighbor...",
+    "age": 41,
+    "gender": "F",
+    "timePosted": "5 days ago",
+    "audioUrl": null,
+    "avatarColor": "bg-rose-500"
+  }
+]

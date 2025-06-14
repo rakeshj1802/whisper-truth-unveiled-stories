@@ -5,6 +5,10 @@ import { Separator } from "@/components/ui/separator";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const openFeedbackForm = () => {
+    window.open('https://forms.gle/xY853C2WVSmivL8Z9', '_blank');
+  };
+
   return (
     <footer className="bg-gray-800 border-t border-gray-700">
       {/* Main Footer */}
@@ -23,8 +27,13 @@ const Footer = () => {
               <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
                 About
               </Button>
-              <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
-                Contact
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={openFeedbackForm}
+                className="border-gray-600 text-gray-300 hover:bg-gray-700"
+              >
+                Feedback
               </Button>
             </div>
           </div>
@@ -39,7 +48,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" onClick={() => window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank')} className="text-gray-400 hover:text-purple-400 transition-colors cursor-pointer">
+                <a href="#" onClick={() => window.open('https://forms.gle/dhDrLy9GJSoJrjBc8', '_blank')} className="text-gray-400 hover:text-purple-400 transition-colors cursor-pointer">
                   Submit Confession
                 </a>
               </li>
@@ -76,8 +85,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                  Report Content
+                <a href="#" onClick={openFeedbackForm} className="text-gray-400 hover:text-purple-400 transition-colors cursor-pointer">
+                  Send Feedback
                 </a>
               </li>
             </ul>

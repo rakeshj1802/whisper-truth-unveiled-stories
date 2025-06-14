@@ -5,7 +5,7 @@ import { MessageSquare, Shield, Zap } from 'lucide-react';
 
 const SubmitSection = () => {
   const openSubmissionForm = () => {
-    window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank');
+    window.open('https://forms.gle/dhDrLy9GJSoJrjBc8', '_blank');
   };
 
   return (
