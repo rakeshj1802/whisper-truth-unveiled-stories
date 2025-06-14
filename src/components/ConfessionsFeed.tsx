@@ -127,6 +127,13 @@ const ConfessionsFeed = () => {
     }, 500);
   };
 
+  // Prepare dynamic text for stats
+  const currentVisibleCount = Math.min(visibleCount, confessions.length);
+  const totalConfessionsCount = confessions.length;
+  const showingStatsText = t('feed.showingStats') // This should return a string like "Showing {count} of {total} confessions"
+    .replace('{count}', currentVisibleCount.toString())
+    .replace('{total}', totalConfessionsCount.toString());
+
   return (
     <section id="confessions-feed" className="py-20 px-4 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800">
       <div className="max-w-7xl mx-auto">
@@ -212,7 +219,7 @@ const ConfessionsFeed = () => {
         {/* Stats */}
         <div className="text-center mt-8">
           <div className="inline-flex items-center px-4 py-2 bg-gray-800/50 text-gray-400 rounded-full border border-gray-700">
-            {t('feed.showingStats', { count: Math.min(visibleCount, confessions.length), total: confessions.length })}
+            {showingStatsText}
           </div>
         </div>
       </div>
