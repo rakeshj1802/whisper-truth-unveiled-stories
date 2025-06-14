@@ -1,8 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
 
-// Import the logo
-import ConfessionXLogo from "@/assets/logos/confessionx-logo-1.png";
+// Logo import removed because confessionx-logo-1.png does not exist
+// import ConfessionXLogo from "@/assets/logos/confessionx-logo-1.png";
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState(0);
@@ -32,14 +33,11 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Dynamic Background with Overlay */}
       <div className="absolute inset-0">
-        {/* Replace backgroundImage with your logo */}
+        {/* Placeholder background (gradient only) because logo is missing */}
         <div 
-          className="absolute inset-0 bg-center bg-no-repeat bg-cover transition-all duration-1000"
+          className="absolute inset-0 bg-gradient-to-tr from-purple-800 via-gray-900 to-pink-900 transition-all duration-1000"
           style={{
-            backgroundImage: `url(${ConfessionXLogo})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.16 // subtle logo watermark effect, adjust as needed
+            opacity: 0.16 // subtle effect, adjust as needed
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-purple-900/80 to-gray-900/95"></div>
@@ -55,7 +53,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        {/* Logo text remains for brand clarity, but background is now the logo */}
+        {/* Logo text remains for brand clarity */}
         <div className="mb-12 animate-fade-in">
           <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
             <span className="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
@@ -115,3 +113,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
