@@ -1,8 +1,15 @@
-
 import { Button } from "@/components/ui/button";
 import { Home, Plus, Info } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const MobileNavBar = () => {
+  const navigate = useNavigate();
+
+  const handleGoHome = () => {
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -25,7 +32,7 @@ const MobileNavBar = () => {
         <Button
           variant="ghost"
           size="sm"
-          onClick={scrollToTop}
+          onClick={handleGoHome}
           className="flex flex-col items-center p-2 text-gray-300 hover:text-purple-400 hover:bg-transparent"
         >
           <Home className="w-5 h-5 mb-1" />
