@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
 
@@ -50,7 +51,7 @@ const Hero = () => {
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         {/* Logo */}
         <div className="mb-12 animate-fade-in">
-          <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
+          <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
             <span className="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
               Confession
             </span>
