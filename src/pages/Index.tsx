@@ -1,5 +1,6 @@
 
 import Hero from '../components/Hero';
+import CategoriesNav from '../components/CategoriesNav'; // Added import
 import ConfessionsFeed from '../components/ConfessionsFeed';
 import SubmitSection from '../components/SubmitSection';
 // Removed AdSpace import
@@ -10,6 +11,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-900">
       <Hero />
+      <CategoriesNav /> {/* Added CategoriesNav component */}
       <ConfessionsFeed />
       {/* Removed AdSpace type="banner" */}
       <SubmitSection />
