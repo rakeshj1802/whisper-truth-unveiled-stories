@@ -2,6 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
 
+// Import the logo
+import ConfessionXLogo from "@/assets/logos/confessionx-logo.png";
+
 const Hero = () => {
   const [currentText, setCurrentText] = useState(0);
   const dynamicTexts = [
@@ -30,10 +33,14 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Dynamic Background with Overlay */}
       <div className="absolute inset-0">
+        {/* Replace backgroundImage with your logo */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
+          className="absolute inset-0 bg-center bg-no-repeat bg-cover transition-all duration-1000"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?q=80&w=3880&auto=format&fit=crop')`,
+            backgroundImage: `url(${ConfessionXLogo})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.16 // subtle logo watermark effect, adjust as needed
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-purple-900/80 to-gray-900/95"></div>
@@ -49,7 +56,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        {/* Logo */}
+        {/* Logo text remains for brand clarity, but background is now the logo */}
         <div className="mb-12 animate-fade-in">
           <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
             <span className="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
@@ -109,3 +116,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
