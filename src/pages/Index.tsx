@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import Hero from '../components/Hero';
-import CategoriesNav from '../components/CategoriesNav';
+import LanguageCategoriesNav from '../components/LanguageCategoriesNav';
+import SubCategoriesNav from '../components/SubCategoriesNav';
 import ConfessionsFeed from '../components/ConfessionsFeed';
 import SubmitSection from '../components/SubmitSection';
 import Footer from '../components/Footer';
@@ -9,27 +10,44 @@ import MobileNavBar from '../components/MobileNavBar';
 import { categories as categoryData } from '@/data/categories'; // To find name from slug
 
 const Index = () => {
-  // Default to "all" category slug. The CategoriesNav will pass the slug.
-  const [selectedCategorySlug, setSelectedCategorySlug] = useState<string>("all");
+  // Language (first step)
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  // Category selection (second step)
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState<string | null>(null);
 
-  const handleSelectCategory = (categorySlug: string) => {
-    setSelectedCategorySlug(categorySlug);
-  };
+  // Only show subcategories after picking a language
+  const canShowSubCategories = selectedLanguage !== null;
 
-  // Find the category name from the slug to pass to ConfessionsFeed
-  // "all" slug maps to "All" name. Other slugs should map to their respective names.
+  // Find category by slug for feed title
   const currentCategory = categoryData.find(cat => cat.slug === selectedCategorySlug);
-  const categoryNameForFeed = currentCategory ? currentCategory.name : "All";
-
+  const categoryNameForFeed = currentCategory ? currentCategory.name : undefined;
 
   return (
     <div className="min-h-screen bg-gray-900">
       <Hero />
-      <CategoriesNav 
-        selectedCategorySlug={selectedCategorySlug}
-        onSelectCategory={handleSelectCategory}
+      {/* 1. Language selection */}
+      <LanguageCategoriesNav
+        selectedLanguageSlug={selectedLanguage}
+        onSelectLanguage={(slug) => {
+          setSelectedLanguage(slug);
+          // Reset category on language change
+          setSelectedCategorySlug(null);
+        }}
       />
-      <ConfessionsFeed categoryName={categoryNameForFeed} /> {/* Pass categoryName */}
+      {/* 2. Subcategories only if language is picked */}
+      {canShowSubCategories && (
+        <SubCategoriesNav
+          selectedCategorySlug={selectedCategorySlug}
+          onSelectCategory={setSelectedCategorySlug}
+        />
+      )}
+      {/* Confessions Feed rendered only if both are picked */}
+      {canShowSubCategories && selectedCategorySlug && (
+        <ConfessionsFeed
+          // Optionally, also pass language for future customization
+          categoryName={categoryNameForFeed}
+        />
+      )}
       <SubmitSection />
       <Footer />
       <MobileNavBar />
