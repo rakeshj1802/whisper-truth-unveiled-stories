@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useConfessions } from '@/hooks/useConfessions';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { categories as allCategoriesData } from '@/data/categories';
@@ -14,8 +15,10 @@ import MobileNavBar from '@/components/MobileNavBar';
 const CategoryPage: React.FC = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
   const { t } = useLanguage();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const currentCategory = allCategoriesData.find(cat => cat.slug === categorySlug);
+  const categoryNameForHook = currentCategory ? currentCategory.name : undefined;
 
   const {
     confessions,
@@ -30,7 +33,7 @@ const CategoryPage: React.FC = () => {
     refreshFeed,
     totalConfessionsCount,
     currentAudio
-  } = useConfessions({ categorySlug });
+  } = useConfessions({ categoryName: categoryNameForHook }); // Pass categoryName
 
   React.useEffect(() => {
     return () => {
@@ -46,18 +49,28 @@ const CategoryPage: React.FC = () => {
     ? currentCategory.subtitle 
     : t('categoryPage.loadingSubtitle');
   
-  console.log(`Rendering CategoryPage for slug: ${categorySlug}, title: ${pageTitle}, subtitle: ${pageSubtitle}, count: ${totalConfessionsCount}`);
+  console.log(`Rendering CategoryPage for slug: ${categorySlug}, name: ${categoryNameForHook}, title: ${pageTitle}, subtitle: ${pageSubtitle}, count: ${totalConfessionsCount}`);
 
+  const handleSelectCategory = (newCategorySlug: string) => {
+    if (newCategorySlug === "all") {
+      navigate("/"); // Navigate to Index page if "All" is selected
+    } else {
+      navigate(`/category/${newCategorySlug}`);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <CategoriesNav /> 
+      <CategoriesNav 
+        selectedCategorySlug={categorySlug || null} // Pass current slug
+        onSelectCategory={handleSelectCategory}   // Pass navigation handler
+      /> 
       
       <section id="category-confessions-feed" className="py-20 px-4 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800">
         <div className="max-w-7xl mx-auto">
           <ConfessionsFeedHeader
             title={pageTitle}
-            subtitle={pageSubtitle} // This will now use the new specific subtitle
+            subtitle={pageSubtitle}
             confessionsCount={totalConfessionsCount}
             onRefresh={refreshFeed}
             isLoading={isLoadingInitial || isLoadingMore}
@@ -91,3 +104,4 @@ const CategoryPage: React.FC = () => {
 };
 
 export default CategoryPage;
+
