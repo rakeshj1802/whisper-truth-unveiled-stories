@@ -1,16 +1,13 @@
+
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Play, Pause, Eye, Clock, Heart, MessageCircle, Send } from 'lucide-react';
+import { Play, Pause, Eye, Clock } from 'lucide-react'; // Removed Heart, MessageCircle, Send
 import { useLanguage } from '@/contexts/LanguageContext';
 
-interface Comment {
-  id: string;
-  user: string;
-  text: string;
-  time: string;
-}
+// Removed Comment interface
 
 interface Confession {
   id: string;
@@ -22,8 +19,7 @@ interface Confession {
   timePosted: string;
   audioUrl?: string | null;
   avatarColor: string;
-  likes: number;
-  comments: Comment[];
+  // Removed likes and comments fields
 }
 
 interface ConfessionCardProps {
@@ -32,8 +28,7 @@ interface ConfessionCardProps {
   onToggleExpanded: () => void;
   playingAudio: string | null;
   onToggleAudio: (audioUrl: string, confessionId: string) => void;
-  onLike: (confessionId: string, liked: boolean) => void;
-  onAddComment: (confessionId: string, commentText: string) => void;
+  // Removed onLike and onAddComment props
 }
 
 const ConfessionCard = ({
@@ -42,54 +37,39 @@ const ConfessionCard = ({
   onToggleExpanded,
   playingAudio,
   onToggleAudio,
-  onLike,
-  onAddComment
 }: ConfessionCardProps) => {
-  const [liked, setLiked] = useState(false); // Tracks if current user liked this session
-  const [showComments, setShowComments] = useState(false);
-  const [newComment, setNewComment] = useState('');
+  // Removed liked, showComments, newComment state
   const { t } = useLanguage();
 
   const getInitials = (gender: string) => {
     return gender === 'M' ? 'M' : 'F';
   };
 
-  const handleLikeClick = () => {
-    const newLikedState = !liked;
-    setLiked(newLikedState);
-    onLike(confession.id, newLikedState);
-  };
-
-  const handleAddCommentClick = () => {
-    if (newComment.trim()) {
-      onAddComment(confession.id, newComment.trim());
-      setNewComment('');
-    }
-  };
+  // Removed handleLikeClick and handleAddCommentClick functions
 
   return (
     <Card className="bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-purple-500 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 transform hover:scale-[1.02] group">
       <CardContent className="p-6">
         {/* Header with User Info and Audio Controls */}
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center">
-            <Avatar className="w-12 h-12 mr-3 ring-2 ring-purple-500/30 group-hover:ring-purple-400/50 transition-all">
+          <Link to="/profile" className="flex items-center group/avatar">
+            <Avatar className="w-12 h-12 mr-3 ring-2 ring-purple-500/30 group-hover/avatar:ring-purple-400/50 transition-all">
               <AvatarFallback className={`${confession.avatarColor} text-white font-bold text-lg`}>
                 {getInitials(confession.gender)}
               </AvatarFallback>
             </Avatar>
             <div>
-              <div className="flex items-center text-sm text-gray-300 font-medium">
+              <div className="flex items-center text-sm text-gray-300 font-medium group-hover/avatar:text-purple-300 transition-colors">
                 <span className="bg-purple-500/20 px-2 py-1 rounded-full">
                   {confession.gender}, {confession.age}
                 </span>
               </div>
-              <div className="flex items-center text-xs text-gray-500 mt-1">
+              <div className="flex items-center text-xs text-gray-500 mt-1 group-hover/avatar:text-gray-400 transition-colors">
                 <Clock className="w-3 h-3 mr-1" />
                 <span>{confession.timePosted}</span>
               </div>
             </div>
-          </div>
+          </Link>
           
           {confession.audioUrl && (
             <Button
@@ -126,41 +106,15 @@ const ConfessionCard = ({
         </div>
 
         {/* Audio Player */}
-        {confession.audioUrl && playingAudio === confession.id && ( // Only show player if this card's audio is active
+        {confession.audioUrl && playingAudio === confession.id && (
           <div className="mb-4 bg-gray-700/50 rounded-lg p-3">
-            {/* The actual audio element is managed in ConfessionsFeed, so this might be just a visual placeholder or removed if not needed */}
             <p className="text-xs text-purple-300 text-center">Audio playing...</p>
           </div>
         )}
 
-        {/* Action Buttons */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleLikeClick}
-              className={`transition-all duration-300 hover:scale-110 ${
-                liked 
-                ? 'text-red-400 hover:text-red-300' 
-                : 'text-gray-400 hover:text-red-400'
-              }`}
-            >
-              <Heart className={`w-4 h-4 mr-2 ${liked ? 'fill-current' : ''}`} />
-              {confession.likes}
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowComments(!showComments)}
-              className="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:scale-110"
-            >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              {confession.comments.length}
-            </Button>
-          </div>
-
+        {/* Action Buttons - Only Read More/Less */}
+        <div className="flex items-center justify-end mb-4"> {/* Changed justify-between to justify-end */}
+          {/* Removed Like and Comment buttons */}
           <Button
             variant="ghost"
             size="sm"
@@ -172,48 +126,11 @@ const ConfessionCard = ({
           </Button>
         </div>
 
-        {/* Comments Section */}
-        {showComments && (
-          <div className="border-t border-gray-700 pt-4">
-            {/* Comment Input */}
-            <div className="flex gap-3 mb-4">
-              <input
-                type="text"
-                placeholder={t('card.addCommentPlaceholder')}
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                className="flex-1 bg-gray-700/50 border border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-purple-500"
-                onKeyPress={(e) => e.key === 'Enter' && handleAddCommentClick()}
-              />
-              <Button
-                size="sm"
-                onClick={handleAddCommentClick}
-                className="bg-purple-600 hover:bg-purple-700"
-              >
-                <Send className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Comments List */}
-            <div className="space-y-3 max-h-40 overflow-y-auto">
-              {confession.comments.map((comment) => (
-                <div key={comment.id} className="bg-gray-700/30 rounded-lg p-3">
-                  <p className="text-gray-300 text-sm mb-1">{comment.text}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 text-xs">{comment.user}</span>
-                    <span className="text-gray-500 text-xs">{comment.time}</span>
-                  </div>
-                </div>
-              ))}
-              {confession.comments.length === 0 && (
-                <p className="text-gray-500 text-sm text-center py-2">{t('card.noComments')}</p>
-              )}
-            </div>
-          </div>
-        )}
+        {/* Comments Section Removed */}
       </CardContent>
     </Card>
   );
 };
 
 export default ConfessionCard;
+

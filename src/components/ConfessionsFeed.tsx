@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from 'lucide-react';
@@ -5,12 +6,7 @@ import confessionsData from '../data/confessions.json';
 import ConfessionCard from './confession/ConfessionCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-interface Comment {
-  id: string;
-  user: string; // Added user, assuming anonymous or placeholder
-  text: string;
-  time: string;
-}
+// Removed Comment interface
 
 interface Confession {
   id: string;
@@ -22,8 +18,7 @@ interface Confession {
   timePosted: string;
   audioUrl?: string | null;
   avatarColor: string;
-  likes: number;
-  comments: Comment[];
+  // Removed likes and comments fields
 }
 
 const ConfessionsFeed = () => {
@@ -38,8 +33,7 @@ const ConfessionsFeed = () => {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      // Ensure confessionsData is correctly typed or cast
-      const typedConfessionsData = confessionsData as Confession[];
+      const typedConfessionsData = confessionsData as Confession[]; // Assuming data might still have old fields, they'll be ignored
       const shuffled = [...typedConfessionsData].sort(() => Math.random() - 0.5);
       setConfessions(shuffled);
       setIsLoading(false);
@@ -75,31 +69,7 @@ const ConfessionsFeed = () => {
     }
   };
 
-  const handleLike = (confessionId: string, liked: boolean) => {
-    setConfessions(prevConfessions =>
-      prevConfessions.map(confession =>
-        confession.id === confessionId
-          ? { ...confession, likes: liked ? confession.likes + 1 : confession.likes -1 }
-          : confession
-      )
-    );
-  };
-
-  const handleAddComment = (confessionId: string, commentText: string) => {
-    const newComment: Comment = {
-      id: Date.now().toString(),
-      user: "Anonymous", // Placeholder for user
-      text: commentText,
-      time: "now",
-    };
-    setConfessions(prevConfessions =>
-      prevConfessions.map(confession =>
-        confession.id === confessionId
-          ? { ...confession, comments: [newComment, ...confession.comments] }
-          : confession
-      )
-    );
-  };
+  // Removed handleLike and handleAddComment functions
 
   const loadMore = () => {
     setIsLoading(true);
@@ -117,7 +87,6 @@ const ConfessionsFeed = () => {
       setConfessions(shuffled);
       setVisibleCount(6);
       setExpandedCards(new Set());
-      // Reset audio player if any was playing
       if (currentAudio) {
         currentAudio.pause();
         setCurrentAudio(null);
@@ -127,10 +96,9 @@ const ConfessionsFeed = () => {
     }, 500);
   };
 
-  // Prepare dynamic text for stats
   const currentVisibleCount = Math.min(visibleCount, confessions.length);
   const totalConfessionsCount = confessions.length;
-  const showingStatsText = t('feed.showingStats') // This should return a string like "Showing {count} of {total} confessions"
+  const showingStatsText = t('feed.showingStats')
     .replace('{count}', currentVisibleCount.toString())
     .replace('{total}', totalConfessionsCount.toString());
 
@@ -186,8 +154,7 @@ const ConfessionsFeed = () => {
                   onToggleExpanded={() => toggleExpanded(confession.id)}
                   playingAudio={playingAudio}
                   onToggleAudio={toggleAudio}
-                  onLike={handleLike}
-                  onAddComment={handleAddComment}
+                  // Removed onLike and onAddComment props
                 />
               </div>
             </div>
@@ -201,7 +168,7 @@ const ConfessionsFeed = () => {
               onClick={loadMore}
               variant="outline"
               size="lg"
-              disabled={isLoading && confessions.length > 0} // Only disable if loading more, not initial load
+              disabled={isLoading && confessions.length > 0}
               className="border-2 border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white px-10 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
             >
               {isLoading && confessions.length > 0 ? (
@@ -228,3 +195,4 @@ const ConfessionsFeed = () => {
 };
 
 export default ConfessionsFeed;
+

@@ -41,10 +41,8 @@ Complete internationalization support for 14 languages:
 
 ### 📱 Interactive Confession Cards
 - **Dynamic Content**: Rich confession cards with expandable content
-- **User Avatars**: Color-coded avatars based on gender (M/F)
+- **User Avatars & Info Link**: Color-coded avatars (M/F) and user info that links to a general Profile/Anonymity Information page.
 - **Engagement Features**:
-  - Like/Heart reactions with real-time counters (managed in-memory per session)
-  - Comment system with add/view functionality (managed in-memory per session)
   - Read more/less toggle for long confessions
 - **Audio Support**: Play/pause controls for audio confessions
 - **Responsive Design**: Cards adapt to different screen sizes
@@ -57,13 +55,12 @@ Complete internationalization support for 14 languages:
 - **Visual Indicators**: Icons showing audio availability
 
 ### 💬 User Engagement
-- **Real-time Comments**: Add and view comments on confessions. Data is initialized from `confessions.json` and updated in application memory during the session.
-- **Like System**: Heart reactions with counters. Data is initialized from `confessions.json` and updated in application memory during the session.
 - **Anonymous Interaction**: All interactions remain anonymous
-- **Responsive Feedback**: Visual feedback for all user actions
+- **Responsive Feedback**: Visual feedback for user actions (e.g., audio play/pause, expand content)
+- **Profile/Anonymity Info Page**: A dedicated page explaining the platform's approach to anonymity, accessible via user avatar/info on confession cards.
 
 ### 📊 Content Management
-- **JSON Data Structure**: Organized confession data in `/src/data/confessions.json`. Includes initial `likes` and `comments` for each confession.
+- **JSON Data Structure**: Organized confession data in `/src/data/confessions.json`.
 - **Dynamic Loading**: Confession feed loads from structured data
 - **Randomized Display**: Confessions shown in random order
 - **Load More Functionality**: Progressive loading of confession cards
@@ -135,14 +132,15 @@ src/
 ├── contexts/
 │   └── LanguageContext.tsx         # Multi-language context provider
 ├── data/
-│   └── confessions.json            # Confession data (includes initial likes/comments)
+│   └── confessions.json            # Confession data
 ├── assets/
 │   ├── logos/                      # Logo files (ready for custom logo)
 │   ├── images/                     # General images
 │   └── icons/                      # Icon files
 ├── pages/
 │   ├── Index.tsx                   # Main landing page
-│   └── NotFound.tsx                # 404 error page
+│   ├── NotFound.tsx                # 404 error page
+│   └── ProfilePage.tsx             # Profile/Anonymity Information page
 └── hooks/                          # Custom React hooks
 ```
 
@@ -179,7 +177,7 @@ npm run dev
 2. Update the Hero component to use your logo instead of text
 
 ### Updating Confession Data
-Edit `/src/data/confessions.json` with your confession data. Ensure each confession object includes `likes` (number) and `comments` (array of comment objects):
+Edit `/src/data/confessions.json` with your confession data. Ensure each confession object matches the updated structure (likes and comments fields are no longer used by the application and can be removed from your JSON file for cleanliness):
 
 ```json
 {
@@ -191,14 +189,11 @@ Edit `/src/data/confessions.json` with your confession data. Ensure each confess
   "gender": "M",
   "timePosted": "2h ago",
   "audioUrl": "optional-audio-url",
-  "avatarColor": "bg-purple-500",
-  "likes": 10, // Initial like count
-  "comments": [ // Initial comments array
-    { "id": "comment-1", "user": "UserX", "text": "First comment!", "time": "1h ago" }
-  ]
+  "avatarColor": "bg-purple-500"
+  // "likes" and "comments" fields are no longer used and can be removed.
 }
 ```
-**Note**: Likes and comments added during a user session are stored in memory and will reset on page refresh. For persistent storage, a backend solution is required.
+**Note**: The application will ignore `likes` and `comments` fields if they are present in your `confessions.json`, but it's cleaner to remove them.
 
 {/* Removed Advertisement Links Section */}
 
