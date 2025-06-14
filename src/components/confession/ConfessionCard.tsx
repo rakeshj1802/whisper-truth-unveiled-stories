@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Play, Pause, Eye, Clock, Heart, MessageCircle } from 'lucide-react';
+import { Play, Pause, Eye, Clock, Heart, MessageCircle, Send } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ConfessionCardProps {
   confession: {
@@ -32,6 +33,13 @@ const ConfessionCard = ({
 }: ConfessionCardProps) => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 50) + 5);
+  const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState<{ id: string; text: string; time: string }[]>([
+    { id: '1', text: 'I can relate to this so much...', time: '2h ago' },
+    { id: '2', text: 'Thank you for sharing this. Stay strong! 💪', time: '4h ago' }
+  ]);
+  const [newComment, setNewComment] = useState('');
+  const { t } = useLanguage();
 
   const getInitials = (gender: string) => {
     return gender === 'M' ? 'M' : 'F';
@@ -40,6 +48,18 @@ const ConfessionCard = ({
   const handleLike = () => {
     setLiked(!liked);
     setLikeCount(prev => liked ? prev - 1 : prev + 1);
+  };
+
+  const handleAddComment = () => {
+    if (newComment.trim()) {
+      const comment = {
+        id: Date.now().toString(),
+        text: newComment,
+        time: 'now'
+      };
+      setComments([comment, ...comments]);
+      setNewComment('');
+    }
   };
 
   return (
@@ -115,7 +135,7 @@ const ConfessionCard = ({
         )}
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-4">
             <Button
               variant="ghost"
@@ -134,10 +154,11 @@ const ConfessionCard = ({
             <Button
               variant="ghost"
               size="sm"
+              onClick={() => setShowComments(!showComments)}
               className="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:scale-110"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
-              {Math.floor(Math.random() * 20) + 1}
+              {comments.length}
             </Button>
           </div>
 
@@ -148,9 +169,43 @@ const ConfessionCard = ({
             className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 font-medium transition-all duration-300 hover:scale-105"
           >
             <Eye className="w-4 h-4 mr-2" />
-            {isExpanded ? 'Show Less' : 'Read Full'}
+            {isExpanded ? t('card.showLess') : t('card.readFull')}
           </Button>
         </div>
+
+        {/* Comments Section */}
+        {showComments && (
+          <div className="border-t border-gray-700 pt-4">
+            {/* Comment Input */}
+            <div className="flex gap-3 mb-4">
+              <input
+                type="text"
+                placeholder="Add a supportive comment..."
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                className="flex-1 bg-gray-700/50 border border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-purple-500"
+                onKeyPress={(e) => e.key === 'Enter' && handleAddComment()}
+              />
+              <Button
+                size="sm"
+                onClick={handleAddComment}
+                className="bg-purple-600 hover:bg-purple-700"
+              >
+                <Send className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Comments List */}
+            <div className="space-y-3 max-h-40 overflow-y-auto">
+              {comments.map((comment) => (
+                <div key={comment.id} className="bg-gray-700/30 rounded-lg p-3">
+                  <p className="text-gray-300 text-sm mb-1">{comment.text}</p>
+                  <span className="text-gray-500 text-xs">{comment.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

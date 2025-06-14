@@ -97,22 +97,6 @@ const Hero = () => {
           </Button>
         </div>
 
-        {/* Stats */}
-        <div className="mt-16 flex justify-center space-x-8 animate-fade-in animation-delay-600">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400">1000+</div>
-            <div className="text-sm text-gray-400">Confessions</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-pink-400">24/7</div>
-            <div className="text-sm text-gray-400">Anonymous</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-400">Free</div>
-            <div className="text-sm text-gray-400">Forever</div>
-          </div>
-        </div>
-
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-purple-400 rounded-full flex justify-center bg-white/5 backdrop-blur-sm">

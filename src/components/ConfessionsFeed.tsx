@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { RefreshCw } from 'lucide-react';
 import confessionsData from '../data/confessions.json';
 import ConfessionCard from './confession/ConfessionCard';
+import AdSpace from './AdSpace';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Confession {
   id: string;
@@ -24,6 +26,7 @@ const ConfessionsFeed = () => {
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
   const [visibleCount, setVisibleCount] = useState(6);
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     setIsLoading(true);
@@ -89,7 +92,7 @@ const ConfessionsFeed = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-4 mb-6">
             <h2 className="font-playfair text-4xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-              Recent Confessions
+              {t('feed.title')}
             </h2>
             <Button
               onClick={refreshFeed}
@@ -102,7 +105,7 @@ const ConfessionsFeed = () => {
             </Button>
           </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Real stories from real people. Read them, listen to them, feel them.
+            {t('feed.subtitle')}
           </p>
           <div className="mt-6 inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full border border-purple-500/30">
             <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
@@ -123,18 +126,26 @@ const ConfessionsFeed = () => {
         {/* Confessions Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
           {confessions.slice(0, visibleCount).map((confession, index) => (
-            <div
-              key={confession.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <ConfessionCard
-                confession={confession}
-                isExpanded={expandedCards.has(confession.id)}
-                onToggleExpanded={() => toggleExpanded(confession.id)}
-                playingAudio={playingAudio}
-                onToggleAudio={toggleAudio}
-              />
+            <div key={confession.id}>
+              <div
+                className="animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <ConfessionCard
+                  confession={confession}
+                  isExpanded={expandedCards.has(confession.id)}
+                  onToggleExpanded={() => toggleExpanded(confession.id)}
+                  playingAudio={playingAudio}
+                  onToggleAudio={toggleAudio}
+                />
+              </div>
+              
+              {/* Inline Ad every 4th confession */}
+              {(index + 1) % 4 === 0 && index < visibleCount - 1 && (
+                <div className="col-span-full my-8">
+                  <AdSpace type="inline" />
+                </div>
+              )}
             </div>
           ))}
         </div>
