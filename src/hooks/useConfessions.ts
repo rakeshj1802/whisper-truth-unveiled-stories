@@ -35,7 +35,7 @@ export const useConfessions = ({ categoryName }: UseConfessionsProps = {}) => {
       }
       
       setAllConfessionsInHook(filteredConfessions);
-      
+
       const shuffled = [...filteredConfessions].sort(() => Math.random() - 0.5);
       setDisplayedConfessions(shuffled);
       setVisibleCount(INITIAL_VISIBLE_COUNT);
@@ -48,7 +48,7 @@ export const useConfessions = ({ categoryName }: UseConfessionsProps = {}) => {
       }
       setIsLoading(false);
     }, 500);
-  }, [categoryName, currentAudio]);
+  }, [categoryName]);
 
   useEffect(() => {
     loadInitialConfessions();
