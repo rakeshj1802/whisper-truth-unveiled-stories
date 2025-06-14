@@ -1,11 +1,25 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link for internal navigation
+import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
+import { Button } from '@/components/ui/button'; // Import Button
+import { ArrowLeft } from 'lucide-react'; // Import ArrowLeft icon
 
 const About = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-gray-900 text-gray-200 min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-8">
+          <Button
+            variant="ghost"
+            onClick={() => navigate(-1)}
+            className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/20"
+          >
+            <ArrowLeft className="mr-2 h-5 w-5" />
+            Back
+          </Button>
+        </div>
         <header className="mb-12 text-center">
           <h1 className="font-playfair text-4xl md:text-5xl font-bold text-white">
             About <span className="text-purple-400">Confession</span><span className="text-pink-400">X</span>
@@ -81,4 +95,3 @@ const About = () => {
 };
 
 export default About;
-
