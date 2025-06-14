@@ -4,6 +4,7 @@ export interface Category {
   name: string;
   icon: string;
   description: string;
+  subtitle: string; // Added new subtitle field
   href: string;
   slug: string;
 }
@@ -14,14 +15,16 @@ export const categories: Category[] = [
     name: "Desires & Fantasies",
     icon: "🔥",
     description: "Explore people's hidden sexual urges and fantasies.",
+    subtitle: "Uncover hidden desires, kinks, and intimate fantasies shared anonymously.",
     href: "/category/desires-fantasies",
     slug: "desires-fantasies"
   },
   {
-    id: "love-lust", // Changed from "love-heartbreak" to match user's "Love & Lust" for consistency, but keeping slug similar for now. Let's use "love-lust" for slug too.
-    name: "Love & Lust", // User proposed "Love & Lust"
+    id: "love-lust",
+    name: "Love & Lust",
     icon: "💔",
-    description: "Stories of love, heartbreak, passion, and betrayal.", // User proposed description
+    description: "Stories of love, heartbreak, passion, and betrayal.",
+    subtitle: "Navigate the complex world of love, lust, heartbreak, and passionate encounters.",
     href: "/category/love-lust",
     slug: "love-lust"
   },
@@ -30,37 +33,35 @@ export const categories: Category[] = [
     name: "Secrets & Scandals",
     icon: "😶",
     description: "Dark secrets, taboo confessions, and controversial moments.",
+    subtitle: "Delve into a realm of dark secrets, taboo confessions, and shocking scandals.",
     href: "/category/secrets-scandals",
     slug: "secrets-scandals"
   },
   {
-    id: "mind-emotions", // Changed from "life-emotions" to match user's "Mind & Emotions"
-    name: "Mind & Emotions", // User proposed "Mind & Emotions"
+    id: "mind-emotions",
+    name: "Mind & Emotions",
     icon: "🧠",
-    description: "Mental health struggles, growth, and emotional confessions.", // User proposed description
+    description: "Mental health struggles, growth, and emotional confessions.",
+    subtitle: "Share and discover personal journeys of mental health, emotional growth, and heartfelt confessions.",
     href: "/category/mind-emotions",
     slug: "mind-emotions"
   },
   {
-    id: "fiction-roleplay", // Kept similar, user proposed "Fantasy & Fiction"
-    name: "Fantasy & Fiction", // User proposed "Fantasy & Fiction"
+    id: "fiction-roleplay",
+    name: "Fantasy & Fiction",
     icon: "🎭",
-    description: "Fictional, roleplay, and imaginative storytelling.", // User proposed description
+    description: "Fictional, roleplay, and imaginative storytelling.",
+    subtitle: "Dive into worlds of imagination, roleplay, and captivating fictional narratives.",
     href: "/category/fiction-roleplay",
     slug: "fiction-roleplay"
   },
-  { // New category from user proposal
+  { 
     id: "audio-confessions",
     name: "Audio Confessions",
     icon: "📼",
     description: "Voice-recorded stories with raw emotion and depth.",
+    subtitle: "Listen to raw, voice-recorded stories, bringing confessions to life with depth and emotion.",
     href: "/category/audio-confessions",
     slug: "audio-confessions"
   }
-  // Note: "First Times & Experiences" was removed to align with the user's new list.
-  // If "First Times & Experiences" was important, it could be added or re-integrated.
-  // For now, strictly following the user's new proposed 6 categories.
 ];
-
-// The old Category type might not be needed if it was just `typeof categories[0]`.
-// The new interface Category explicitly defines the structure.
