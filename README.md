@@ -1,4 +1,3 @@
-
 # ConfessionX - Anonymous Confessions Platform
 
 **URL**: [https://lovable.dev/projects/71cbbb73-9c93-4362-8322-681c58adcd0b](https://lovable.dev/projects/71cbbb73-9c93-4362-8322-681c58adcd0b)
@@ -44,8 +43,8 @@ Complete internationalization support for 14 languages:
 - **Dynamic Content**: Rich confession cards with expandable content
 - **User Avatars**: Color-coded avatars based on gender (M/F)
 - **Engagement Features**:
-  - Like/Heart reactions with real-time counters
-  - Comment system with add/view functionality
+  - Like/Heart reactions with real-time counters (managed in-memory per session)
+  - Comment system with add/view functionality (managed in-memory per session)
   - Read more/less toggle for long confessions
 - **Audio Support**: Play/pause controls for audio confessions
 - **Responsive Design**: Cards adapt to different screen sizes
@@ -58,13 +57,13 @@ Complete internationalization support for 14 languages:
 - **Visual Indicators**: Icons showing audio availability
 
 ### 💬 User Engagement
-- **Real-time Comments**: Add and view comments on confessions
-- **Like System**: Heart reactions with counters
+- **Real-time Comments**: Add and view comments on confessions. Data is initialized from `confessions.json` and updated in application memory during the session.
+- **Like System**: Heart reactions with counters. Data is initialized from `confessions.json` and updated in application memory during the session.
 - **Anonymous Interaction**: All interactions remain anonymous
 - **Responsive Feedback**: Visual feedback for all user actions
 
 ### 📊 Content Management
-- **JSON Data Structure**: Organized confession data in `/src/data/confessions.json`
+- **JSON Data Structure**: Organized confession data in `/src/data/confessions.json`. Includes initial `likes` and `comments` for each confession.
 - **Dynamic Loading**: Confession feed loads from structured data
 - **Randomized Display**: Confessions shown in random order
 - **Load More Functionality**: Progressive loading of confession cards
@@ -136,7 +135,7 @@ src/
 ├── contexts/
 │   └── LanguageContext.tsx         # Multi-language context provider
 ├── data/
-│   └── confessions.json            # Confession data structure
+│   └── confessions.json            # Confession data (includes initial likes/comments)
 ├── assets/
 │   ├── logos/                      # Logo files (ready for custom logo)
 │   ├── images/                     # General images
@@ -180,7 +179,7 @@ npm run dev
 2. Update the Hero component to use your logo instead of text
 
 ### Updating Confession Data
-Edit `/src/data/confessions.json` with your confession data:
+Edit `/src/data/confessions.json` with your confession data. Ensure each confession object includes `likes` (number) and `comments` (array of comment objects):
 
 ```json
 {
@@ -192,9 +191,14 @@ Edit `/src/data/confessions.json` with your confession data:
   "gender": "M",
   "timePosted": "2h ago",
   "audioUrl": "optional-audio-url",
-  "avatarColor": "bg-purple-500"
+  "avatarColor": "bg-purple-500",
+  "likes": 10, // Initial like count
+  "comments": [ // Initial comments array
+    { "id": "comment-1", "user": "UserX", "text": "First comment!", "time": "1h ago" }
+  ]
 }
 ```
+**Note**: Likes and comments added during a user session are stored in memory and will reset on page refresh. For persistent storage, a backend solution is required.
 
 {/* Removed Advertisement Links Section */}
 

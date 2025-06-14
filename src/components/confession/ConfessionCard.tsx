@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,22 +5,35 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Play, Pause, Eye, Clock, Heart, MessageCircle, Send } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+interface Comment {
+  id: string;
+  user: string;
+  text: string;
+  time: string;
+}
+
+interface Confession {
+  id: string;
+  title: string;
+  content: string;
+  preview: string;
+  age: number;
+  gender: string;
+  timePosted: string;
+  audioUrl?: string | null;
+  avatarColor: string;
+  likes: number;
+  comments: Comment[];
+}
+
 interface ConfessionCardProps {
-  confession: {
-    id: string;
-    title: string;
-    content: string;
-    preview: string;
-    age: number;
-    gender: string;
-    timePosted: string;
-    audioUrl?: string | null;
-    avatarColor: string;
-  };
+  confession: Confession;
   isExpanded: boolean;
   onToggleExpanded: () => void;
   playingAudio: string | null;
   onToggleAudio: (audioUrl: string, confessionId: string) => void;
+  onLike: (confessionId: string, liked: boolean) => void;
+  onAddComment: (confessionId: string, commentText: string) => void;
 }
 
 const ConfessionCard = ({
@@ -29,15 +41,12 @@ const ConfessionCard = ({
   isExpanded,
   onToggleExpanded,
   playingAudio,
-  onToggleAudio
+  onToggleAudio,
+  onLike,
+  onAddComment
 }: ConfessionCardProps) => {
-  const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 50) + 5);
+  const [liked, setLiked] = useState(false); // Tracks if current user liked this session
   const [showComments, setShowComments] = useState(false);
-  const [comments, setComments] = useState<{ id: string; text: string; time: string }[]>([
-    { id: '1', text: 'I can relate to this so much...', time: '2h ago' },
-    { id: '2', text: 'Thank you for sharing this. Stay strong! 💪', time: '4h ago' }
-  ]);
   const [newComment, setNewComment] = useState('');
   const { t } = useLanguage();
 
@@ -45,19 +54,15 @@ const ConfessionCard = ({
     return gender === 'M' ? 'M' : 'F';
   };
 
-  const handleLike = () => {
-    setLiked(!liked);
-    setLikeCount(prev => liked ? prev - 1 : prev + 1);
+  const handleLikeClick = () => {
+    const newLikedState = !liked;
+    setLiked(newLikedState);
+    onLike(confession.id, newLikedState);
   };
 
-  const handleAddComment = () => {
+  const handleAddCommentClick = () => {
     if (newComment.trim()) {
-      const comment = {
-        id: Date.now().toString(),
-        text: newComment,
-        time: 'now'
-      };
-      setComments([comment, ...comments]);
+      onAddComment(confession.id, newComment.trim());
       setNewComment('');
     }
   };
@@ -121,16 +126,10 @@ const ConfessionCard = ({
         </div>
 
         {/* Audio Player */}
-        {confession.audioUrl && (
+        {confession.audioUrl && playingAudio === confession.id && ( // Only show player if this card's audio is active
           <div className="mb-4 bg-gray-700/50 rounded-lg p-3">
-            <audio 
-              controls 
-              className="w-full h-10 rounded-lg"
-              style={{ accentColor: '#a855f7' }}
-            >
-              <source src={confession.audioUrl} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
+            {/* The actual audio element is managed in ConfessionsFeed, so this might be just a visual placeholder or removed if not needed */}
+            <p className="text-xs text-purple-300 text-center">Audio playing...</p>
           </div>
         )}
 
@@ -140,7 +139,7 @@ const ConfessionCard = ({
             <Button
               variant="ghost"
               size="sm"
-              onClick={handleLike}
+              onClick={handleLikeClick}
               className={`transition-all duration-300 hover:scale-110 ${
                 liked 
                 ? 'text-red-400 hover:text-red-300' 
@@ -148,7 +147,7 @@ const ConfessionCard = ({
               }`}
             >
               <Heart className={`w-4 h-4 mr-2 ${liked ? 'fill-current' : ''}`} />
-              {likeCount}
+              {confession.likes}
             </Button>
             
             <Button
@@ -158,7 +157,7 @@ const ConfessionCard = ({
               className="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:scale-110"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
-              {comments.length}
+              {confession.comments.length}
             </Button>
           </div>
 
@@ -180,15 +179,15 @@ const ConfessionCard = ({
             <div className="flex gap-3 mb-4">
               <input
                 type="text"
-                placeholder="Add a supportive comment..."
+                placeholder={t('card.addCommentPlaceholder')}
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 className="flex-1 bg-gray-700/50 border border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-purple-500"
-                onKeyPress={(e) => e.key === 'Enter' && handleAddComment()}
+                onKeyPress={(e) => e.key === 'Enter' && handleAddCommentClick()}
               />
               <Button
                 size="sm"
-                onClick={handleAddComment}
+                onClick={handleAddCommentClick}
                 className="bg-purple-600 hover:bg-purple-700"
               >
                 <Send className="w-4 h-4" />
@@ -197,12 +196,18 @@ const ConfessionCard = ({
 
             {/* Comments List */}
             <div className="space-y-3 max-h-40 overflow-y-auto">
-              {comments.map((comment) => (
+              {confession.comments.map((comment) => (
                 <div key={comment.id} className="bg-gray-700/30 rounded-lg p-3">
                   <p className="text-gray-300 text-sm mb-1">{comment.text}</p>
-                  <span className="text-gray-500 text-xs">{comment.time}</span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-500 text-xs">{comment.user}</span>
+                    <span className="text-gray-500 text-xs">{comment.time}</span>
+                  </div>
                 </div>
               ))}
+              {confession.comments.length === 0 && (
+                <p className="text-gray-500 text-sm text-center py-2">{t('card.noComments')}</p>
+              )}
             </div>
           </div>
         )}

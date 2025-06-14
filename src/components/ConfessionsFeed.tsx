@@ -5,6 +5,13 @@ import confessionsData from '../data/confessions.json';
 import ConfessionCard from './confession/ConfessionCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+interface Comment {
+  id: string;
+  user: string; // Added user, assuming anonymous or placeholder
+  text: string;
+  time: string;
+}
+
 interface Confession {
   id: string;
   title: string;
@@ -15,6 +22,8 @@ interface Confession {
   timePosted: string;
   audioUrl?: string | null;
   avatarColor: string;
+  likes: number;
+  comments: Comment[];
 }
 
 const ConfessionsFeed = () => {
@@ -29,7 +38,9 @@ const ConfessionsFeed = () => {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      const shuffled = [...confessionsData].sort(() => Math.random() - 0.5);
+      // Ensure confessionsData is correctly typed or cast
+      const typedConfessionsData = confessionsData as Confession[];
+      const shuffled = [...typedConfessionsData].sort(() => Math.random() - 0.5);
       setConfessions(shuffled);
       setIsLoading(false);
     }, 500);
@@ -64,6 +75,32 @@ const ConfessionsFeed = () => {
     }
   };
 
+  const handleLike = (confessionId: string, liked: boolean) => {
+    setConfessions(prevConfessions =>
+      prevConfessions.map(confession =>
+        confession.id === confessionId
+          ? { ...confession, likes: liked ? confession.likes + 1 : confession.likes -1 }
+          : confession
+      )
+    );
+  };
+
+  const handleAddComment = (confessionId: string, commentText: string) => {
+    const newComment: Comment = {
+      id: Date.now().toString(),
+      user: "Anonymous", // Placeholder for user
+      text: commentText,
+      time: "now",
+    };
+    setConfessions(prevConfessions =>
+      prevConfessions.map(confession =>
+        confession.id === confessionId
+          ? { ...confession, comments: [newComment, ...confession.comments] }
+          : confession
+      )
+    );
+  };
+
   const loadMore = () => {
     setIsLoading(true);
     setTimeout(() => {
@@ -75,10 +112,17 @@ const ConfessionsFeed = () => {
   const refreshFeed = () => {
     setIsLoading(true);
     setTimeout(() => {
-      const shuffled = [...confessionsData].sort(() => Math.random() - 0.5);
+      const typedConfessionsData = confessionsData as Confession[];
+      const shuffled = [...typedConfessionsData].sort(() => Math.random() - 0.5);
       setConfessions(shuffled);
       setVisibleCount(6);
       setExpandedCards(new Set());
+      // Reset audio player if any was playing
+      if (currentAudio) {
+        currentAudio.pause();
+        setCurrentAudio(null);
+        setPlayingAudio(null);
+      }
       setIsLoading(false);
     }, 500);
   };
@@ -112,7 +156,7 @@ const ConfessionsFeed = () => {
         </div>
 
         {/* Loading State */}
-        {isLoading && (
+        {isLoading && confessions.length === 0 && (
           <div className="text-center mb-8">
             <div className="inline-flex items-center px-6 py-3 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30">
               <RefreshCw className="w-5 h-5 animate-spin mr-3" />
@@ -135,6 +179,8 @@ const ConfessionsFeed = () => {
                   onToggleExpanded={() => toggleExpanded(confession.id)}
                   playingAudio={playingAudio}
                   onToggleAudio={toggleAudio}
+                  onLike={handleLike}
+                  onAddComment={handleAddComment}
                 />
               </div>
             </div>
@@ -148,16 +194,16 @@ const ConfessionsFeed = () => {
               onClick={loadMore}
               variant="outline"
               size="lg"
-              disabled={isLoading}
+              disabled={isLoading && confessions.length > 0} // Only disable if loading more, not initial load
               className="border-2 border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white px-10 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
             >
-              {isLoading ? (
+              {isLoading && confessions.length > 0 ? (
                 <>
                   <RefreshCw className="w-5 h-5 animate-spin mr-3" />
                   Loading...
                 </>
               ) : (
-                'Load More Confessions'
+                t('feed.loadMore')
               )}
             </Button>
           </div>
@@ -166,7 +212,7 @@ const ConfessionsFeed = () => {
         {/* Stats */}
         <div className="text-center mt-8">
           <div className="inline-flex items-center px-4 py-2 bg-gray-800/50 text-gray-400 rounded-full border border-gray-700">
-            Showing {Math.min(visibleCount, confessions.length)} of {confessions.length} confessions
+            {t('feed.showingStats', { count: Math.min(visibleCount, confessions.length), total: confessions.length })}
           </div>
         </div>
       </div>
