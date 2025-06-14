@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +13,7 @@ import TermsOfService from "./pages/TermsOfService";
 import About from "./pages/About";
 import CommunityGuidelines from "./pages/CommunityGuidelines";
 import ContentPolicy from "./pages/ContentPolicy";
+import CategoryPage from "./pages/CategoryPage"; // Import CategoryPage
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/category/:categorySlug" element={<CategoryPage />} /> {/* Add new route */}
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

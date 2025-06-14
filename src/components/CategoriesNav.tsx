@@ -4,19 +4,11 @@ import {
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
-  navigationMenuTriggerStyle // We can use this for styling if needed, or create custom styles
+  navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom"; // Using Link for potential future routing
-
-const categories = [
-  { name: "Desires & Fantasies", href: "/category/desires-fantasies" },
-  { name: "Love & Heartbreak", href: "/category/love-heartbreak" },
-  { name: "Secrets & Scandals", href: "/category/secrets-scandals" },
-  { name: "Life & Emotions", href: "/category/life-emotions" },
-  { name: "Fiction & Roleplay", href: "/category/fiction-roleplay" },
-  { name: "First Times & Experiences", href: "/category/first-times-experiences" },
-];
+import { Link } from "react-router-dom";
+import { categories } from "@/data/categories"; // Import categories
 
 const CategoriesNav = () => {
   return (

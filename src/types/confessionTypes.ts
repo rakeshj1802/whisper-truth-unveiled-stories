@@ -9,4 +9,5 @@ export interface Confession {
   timePosted: string;
   audioUrl?: string | null;
   avatarColor: string;
+  categorySlug: string; // Added category slug
 }
