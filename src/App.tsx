@@ -9,7 +9,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService"; // Import the new Terms of Service page
+import TermsOfService from "./pages/TermsOfService";
+import About from "./pages/About"; // Import the new About page
 
 const queryClient = new QueryClient();
 
@@ -24,7 +25,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} /> {/* Add route for Terms of Service */}
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/about" element={<About />} /> {/* Add route for About page */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
