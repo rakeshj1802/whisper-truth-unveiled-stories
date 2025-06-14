@@ -2,8 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
 
-// Logo import removed because confessionx-logo-1.png does not exist
-// import ConfessionXLogo from "@/assets/logos/confessionx-logo-1.png";
+// No need to import logo; use external URL directly
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState(0);
@@ -33,11 +32,15 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Dynamic Background with Overlay */}
       <div className="absolute inset-0">
-        {/* Placeholder background (gradient only) because logo is missing */}
+        {/* Logo background */}
         <div 
-          className="absolute inset-0 bg-gradient-to-tr from-purple-800 via-gray-900 to-pink-900 transition-all duration-1000"
+          className="absolute inset-0 bg-center bg-no-repeat bg-cover transition-all duration-1000"
           style={{
-            opacity: 0.16 // subtle effect, adjust as needed
+            backgroundImage: "url('/lovable-uploads/1de3a8fd-1061-413d-b4bc-bbffdccb819a.png')",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            opacity: 0.12 // subtle logo effect
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-purple-900/80 to-gray-900/95"></div>
