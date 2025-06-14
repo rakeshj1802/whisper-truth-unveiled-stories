@@ -9,8 +9,9 @@ import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
-import About from "./pages/About"; // Import the new About page
-import CommunityGuidelines from "./pages/CommunityGuidelines"; // Import the new Community Guidelines page
+import About from "./pages/About";
+import CommunityGuidelines from "./pages/CommunityGuidelines";
+import ContentPolicy from "./pages/ContentPolicy";
 
 const queryClient = new QueryClient();
 
@@ -27,8 +28,8 @@ const App = () => (
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/about" element={<About />} />
-            <Route path="/community-guidelines" element={<CommunityGuidelines />} /> {/* Add route for Community Guidelines page */}
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/community-guidelines" element={<CommunityGuidelines />} />
+            <Route path="/content-policy" element={<ContentPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
