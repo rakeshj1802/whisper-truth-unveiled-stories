@@ -5,7 +5,7 @@ import { useConfessions } from '@/hooks/useConfessions';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { categories as allCategoriesData } from '@/data/categories';
 
-import CategoriesNav from '@/components/CategoriesNav';
+import SubCategoriesNav from '@/components/SubCategoriesNav';
 import ConfessionsFeedHeader from '@/components/confession/feed/ConfessionsFeedHeader';
 import ConfessionsGrid from '@/components/confession/feed/ConfessionsGrid';
 import ConfessionsFeedControls from '@/components/confession/feed/ConfessionsFeedControls';
@@ -61,10 +61,10 @@ const CategoryPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <CategoriesNav 
-        selectedCategorySlug={categorySlug || null} // Pass current slug
-        onSelectCategory={handleSelectCategory}   // Pass navigation handler
-      /> 
+      <SubCategoriesNav
+        selectedCategorySlug={categorySlug || null}
+        onSelectCategory={handleSelectCategory}
+      />
       
       <section id="category-confessions-feed" className="py-20 px-4 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800">
         <div className="max-w-7xl mx-auto">
