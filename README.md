@@ -70,18 +70,7 @@ Complete internationalization support for 14 languages:
 - **Load More Functionality**: Progressive loading of confession cards
 - **Search-Ready**: Structure ready for future search implementation
 
-### 🎯 Advertisement Integration
-- **Banner Ads**: 728x90 banner advertisement spaces
-- **Square Ad Grids**: 300x250 square ad placements
-- **Inline Ads**: Native ads between confession cards
-- **Clickable Ad Spaces**: Easy link integration for advertisers
-- **Responsive Ad Layout**: Ads adapt to different screen sizes
-
-**Ad Placement Strategy:**
-- Top banner after hero section
-- Inline ads every 4th confession card
-- Square ad grid after submission section
-- Strategic placement for maximum visibility
+{/* Removed Advertisement Integration Section */}
 
 ### 📝 Submission System
 - **Google Forms Integration**: Secure submission via Google Forms
@@ -138,11 +127,7 @@ src/
 ├── components/
 │   ├── confession/
 │   │   └── ConfessionCard.tsx       # Individual confession cards
-│   ├── ads/
-│   │   ├── AdBanner.tsx            # Advertisement banner component
-│   │   └── AdSidebar.tsx           # Sidebar advertisement component
 │   ├── ui/                         # Shadcn UI components
-│   ├── AdSpace.tsx                 # Ad space management
 │   ├── ConfessionsFeed.tsx         # Main confession feed
 │   ├── Footer.tsx                  # Site footer with language switcher
 │   ├── Hero.tsx                    # Landing page hero section
@@ -211,10 +196,7 @@ Edit `/src/data/confessions.json` with your confession data:
 }
 ```
 
-### Advertisement Links
-Update ad links in `/src/components/AdSpace.tsx`:
-- Change `linkUrl="#"` to your advertisement URLs
-- Customize ad titles and descriptions
+{/* Removed Advertisement Links Section */}
 
 ### Google Forms Integration
 Update form URLs in respective components:

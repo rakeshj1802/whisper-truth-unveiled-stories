@@ -1,10 +1,8 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from 'lucide-react';
 import confessionsData from '../data/confessions.json';
 import ConfessionCard from './confession/ConfessionCard';
-import AdSpace from './AdSpace';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Confession {
@@ -139,13 +137,6 @@ const ConfessionsFeed = () => {
                   onToggleAudio={toggleAudio}
                 />
               </div>
-              
-              {/* Inline Ad every 4th confession */}
-              {(index + 1) % 4 === 0 && index < visibleCount - 1 && (
-                <div className="col-span-full my-8">
-                  <AdSpace type="inline" />
-                </div>
-              )}
             </div>
           ))}
         </div>

@@ -2,7 +2,7 @@
 import Hero from '../components/Hero';
 import ConfessionsFeed from '../components/ConfessionsFeed';
 import SubmitSection from '../components/SubmitSection';
-import AdSpace from '../components/AdSpace';
+// Removed AdSpace import
 import Footer from '../components/Footer';
 import MobileNavBar from '../components/MobileNavBar';
 
@@ -11,9 +11,9 @@ const Index = () => {
     <div className="min-h-screen bg-gray-900">
       <Hero />
       <ConfessionsFeed />
-      <AdSpace type="banner" />
+      {/* Removed AdSpace type="banner" */}
       <SubmitSection />
-      <AdSpace type="square" />
+      {/* Removed AdSpace type="square" */}
       <Footer />
       <MobileNavBar />
     </div>
