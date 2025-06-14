@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const PrivacyPolicy = () => {
@@ -58,7 +57,7 @@ const PrivacyPolicy = () => {
           <div>
             <h2 className="text-xl sm:text-2xl font-semibold mt-8 mb-4 text-purple-300">7. Data Removal & Contact</h2>
             <p className="mb-4 text-gray-300">
-              If you would like to request the removal of any content you have submitted or believe your privacy has been violated, please email us at: <a className="text-purple-400 hover:text-purple-300 underline" href="mailto:confessionxteam@gmail.com">confessionxteam@gmail.com</a>.
+              If you would like to request the removal of any content you have submitted or believe your privacy has been violated, please email us at: <a className="text-purple-400 hover:text-purple-300 underline" href="mailto:confessionx@zohomail.in">confessionx@zohomail.in</a>.
             </p>
           </div>
 
@@ -79,4 +78,3 @@ const PrivacyPolicy = () => {
 };
 
 export default PrivacyPolicy;
-
