@@ -8,7 +8,7 @@ interface ConfessionsFeedControlsProps {
   totalConfessions: number;
   onLoadMore: () => void;
   isLoadingMore: boolean;
-  showingStatsText: string;
+  // showingStatsText prop removed from interface
   loadMoreText: string;
   loadingText: string;
 }
@@ -18,14 +18,14 @@ const ConfessionsFeedControls: React.FC<ConfessionsFeedControlsProps> = ({
   totalConfessions,
   onLoadMore,
   isLoadingMore,
-  showingStatsText,
+  // showingStatsText removed from destructuring
   loadMoreText,
   loadingText,
 }) => {
   return (
     <>
       {visibleCount < totalConfessions && (
-        <div className="text-center">
+        <div className="text-center my-8"> {/* Added my-8 for spacing, as the stats text below is removed */}
           <Button
             onClick={onLoadMore}
             variant="outline"
@@ -44,13 +44,10 @@ const ConfessionsFeedControls: React.FC<ConfessionsFeedControlsProps> = ({
           </Button>
         </div>
       )}
-      <div className="text-center mt-8">
-        <div className="inline-flex items-center px-4 py-2 bg-gray-800/50 text-gray-400 rounded-full border border-gray-700">
-          {showingStatsText}
-        </div>
-      </div>
+      {/* Removed the div that displayed showingStatsText */}
     </>
   );
 };
 
 export default ConfessionsFeedControls;
+
