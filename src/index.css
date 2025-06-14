@@ -99,5 +99,38 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Subtle centered logo watermark for the entire site. */
+    background-image: url('/lovable-uploads/1de3a8fd-1061-413d-b4bc-bbffdccb819a.png');
+    background-repeat: no-repeat;
+    background-position: center 10vh; /* position a touch down from the top */
+    background-size: 650px auto;
+    /* 
+      Blending tricks for subtle watermark effect:
+      - Use high transparency for the logo.
+      - For extra subtlety, can use a filter for grayscale.
+    */
+    opacity: 1;
+    /* Uses a ::before layer for blending, but browsers support for background-blend-mode with image and color is good. But keep it very light regardless. */
   }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background-image: url('/lovable-uploads/1de3a8fd-1061-413d-b4bc-bbffdccb819a.png');
+  background-repeat: no-repeat;
+  background-position: center 10vh;
+  background-size: 650px auto;
+  opacity: 0.10;
+  filter: grayscale(100%);
+}
+
+/* Ensure the #root container does not override the background */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
 }
