@@ -37,7 +37,7 @@ const ConfessionsFeed: React.FC<ConfessionsFeedProps> = ({ categoryName }) => {
 
   const feedTitle = categoryName && categoryName.toLowerCase() !== 'all' 
     ? `${categoryName} Confessions` 
-    : ""; // Changed from t('feed.title') to an empty string for "All" category
+    : "Latest Confessions"; // A default title for clarity
   
   // Subtitle could also be dynamic if desired, or use a generic one
   const feedSubtitle = categoryName && categoryName.toLowerCase() !== 'all'
@@ -80,4 +80,3 @@ const ConfessionsFeed: React.FC<ConfessionsFeedProps> = ({ categoryName }) => {
 };
 
 export default ConfessionsFeed;
-

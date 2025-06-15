@@ -41,15 +41,12 @@ const Index = () => {
           onSelectCategory={setSelectedCategorySlug}
         />
       )}
-      {/* Confessions Feed rendered only if both are picked */}
-      {canShowSubCategories && selectedCategorySlug && (
-        <div className="px-2 sm:px-4 md:px-6 lg:px-8">
-          <ConfessionsFeed
-            // Optionally, also pass language for future customization
-            categoryName={categoryNameForFeed}
-          />
-        </div>
-      )}
+      {/* Confessions Feed is now always visible, filtered by selections */}
+      <div className="px-2 sm:px-4 md:px-6 lg:px-8">
+        <ConfessionsFeed
+          categoryName={categoryNameForFeed}
+        />
+      </div>
       <div className="px-2 sm:px-4 md:px-6 lg:px-8">
         <SubmitSection />
       </div>
