@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
@@ -16,9 +17,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="font-playfair text-2xl font-bold text-white mb-4">
-              Confession<span className="text-purple-400">X</span>
-            </h3>
+            <div className="flex items-center gap-4 mb-4">
+              <img 
+                src="/lovable-uploads/b0878ead-54eb-40b1-9283-51cd3e8f1354.png" 
+                alt="ConfessionX Logo" 
+                className="w-12 h-12 animate-glow-pulse hover:scale-110 transition-transform duration-300"
+              />
+              <h3 className="font-playfair text-2xl font-bold text-white">
+                Confession<span className="text-purple-400">X</span>
+              </h3>
+            </div>
             <p className="text-gray-400 mb-6 max-w-md">
               A safe space for anonymous confessions. Share your story, read others, 
               and find connection through authentic human experiences.

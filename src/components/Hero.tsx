@@ -2,8 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
 
-// No need to import logo; use external URL directly
-
 const Hero = () => {
   const [currentText, setCurrentText] = useState(0);
   const dynamicTexts = [
@@ -32,17 +30,7 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Dynamic Background with Overlay */}
       <div className="absolute inset-0">
-        {/* Logo background */}
-        <div 
-          className="absolute inset-0 bg-center bg-no-repeat bg-cover transition-all duration-1000"
-          style={{
-            backgroundImage: "url('/lovable-uploads/1de3a8fd-1061-413d-b4bc-bbffdccb819a.png')",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            opacity: 0.12 // subtle logo effect
-          }}
-        />
+        {/* Animated background effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-purple-900/80 to-gray-900/95"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
       </div>
@@ -56,16 +44,19 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        {/* Logo text remains for brand clarity */}
+        {/* Animated Logo */}
         <div className="mb-12 animate-fade-in">
-          <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-              Confession
-            </span>
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              X
-            </span>
-          </h1>
+          <div className="relative mb-8">
+            <img 
+              src="/lovable-uploads/b0878ead-54eb-40b1-9283-51cd3e8f1354.png" 
+              alt="ConfessionX Logo" 
+              className="w-48 h-48 md:w-64 md:h-64 mx-auto animate-pulse hover:scale-110 transition-all duration-500 drop-shadow-2xl"
+              style={{
+                filter: 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4))',
+                animation: 'pulse 2s infinite, float 6s ease-in-out infinite'
+              }}
+            />
+          </div>
           <div className="w-32 h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 mx-auto rounded-full animate-pulse"></div>
         </div>
 
@@ -116,4 +107,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
