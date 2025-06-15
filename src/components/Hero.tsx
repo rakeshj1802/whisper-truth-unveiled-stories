@@ -108,10 +108,8 @@ const Hero = () => {
 
         {/* Enhanced Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-10 h-16 border-2 border-purple-400/70 rounded-full flex justify-center bg-white/15 backdrop-blur-md shadow-lg hover:scale-110 transition-transform cursor-pointer">
-            <div className="w-2 h-6 bg-gradient-to-b from-purple-400 to-pink-400 rounded-full mt-3 animate-pulse"></div>
-          </div>
-          <p className="text-sm text-gray-300 mt-3 font-medium tracking-wide animate-pulse">SCROLL</p>
+          
+          
         </div>
       </div>
     </section>;
