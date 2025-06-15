@@ -1,33 +1,23 @@
-
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
-
 const Hero = () => {
   const [currentText, setCurrentText] = useState(0);
-  const dynamicTexts = [
-    "Read Raw, Real Anonymous Confessions",
-    "Unfiltered Stories from Real People", 
-    "Authentic Voices, No Judgment",
-    "True Stories, Told Anonymously"
-  ];
-
+  const dynamicTexts = ["Read Raw, Real Anonymous Confessions", "Unfiltered Stories from Real People", "Authentic Voices, No Judgment", "True Stories, Told Anonymously"];
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentText((prev) => (prev + 1) % dynamicTexts.length);
+      setCurrentText(prev => (prev + 1) % dynamicTexts.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-
   const scrollToConfessions = () => {
-    document.getElementById('confessions-feed')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('confessions-feed')?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
   const openSubmissionForm = () => {
     window.open('https://forms.gle/dhDrLy9GJSoJrjBc8', '_blank');
   };
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Enhanced Background with Professional Gradients */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-purple-900/60 to-slate-900/70"></div>
@@ -50,21 +40,9 @@ const Hero = () => {
         <div className="mb-16 animate-bounce-in">
           <div className="relative mb-12">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/40 via-pink-500/40 to-purple-500/40 rounded-full blur-3xl scale-150 animate-pulse"></div>
-            <img 
-              src="/lovable-uploads/b0878ead-54eb-40b1-9283-51cd3e8f1354.png" 
-              alt="ConfessionX Logo" 
-              className="relative w-56 h-56 md:w-80 md:h-80 mx-auto transition-all duration-700 hover:scale-125 cursor-pointer"
-              style={{
-                filter: 'drop-shadow(0 0 40px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 80px rgba(236, 72, 153, 0.6))',
-                animation: 'subtleFloat 10s ease-in-out infinite, glowPulse 4s ease-in-out infinite'
-              }}
-            />
+            
           </div>
-          <div className="flex justify-center items-center gap-4 mb-8 animate-fade-in-scale animation-delay-400">
-            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent rounded-full animate-pulse"></div>
-            <div className="w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse"></div>
-            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-pink-400 to-transparent rounded-full animate-pulse"></div>
-          </div>
+          
         </div>
 
         {/* Enhanced Brand Title with Text Shimmer */}
@@ -79,13 +57,10 @@ const Hero = () => {
           </h1>
           
           {/* Dynamic Tagline with Professional Typography */}
-          <h2 
-            key={currentText}
-            className="text-3xl md:text-5xl lg:text-6xl text-white/95 font-light mb-8 transition-all duration-1000 animate-fade-in-scale min-h-[4rem] md:min-h-[6rem] leading-tight"
-          >
+          <h2 key={currentText} className="text-3xl md:text-5xl lg:text-6xl text-white/95 font-light mb-8 transition-all duration-1000 animate-fade-in-scale min-h-[4rem] md:min-h-[6rem] leading-tight">
             {dynamicTexts[currentText]}
           </h2>
-          <p className="text-xl md:text-3xl text-gray-200/90 font-light max-w-5xl mx-auto leading-relaxed animate-elegant-slide animation-delay-600">
+          <p className="text-xl text-gray-200/90 max-w-5xl mx-auto leading-relaxed animate-elegant-slide animation-delay-600 md:text-2xl font-light">
             Unfiltered voices. No signups. Just the truth. Real stories that matter.
           </p>
         </div>
@@ -93,11 +68,7 @@ const Hero = () => {
         {/* Professional CTA Section with Enhanced Animations */}
         <div className="animate-bounce-in animation-delay-400 mb-16">
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-12">
-            <Button 
-              onClick={scrollToConfessions}
-              size="lg"
-              className="group bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 hover:from-purple-700 hover:via-purple-800 hover:to-pink-700 text-white px-16 py-8 text-2xl font-semibold rounded-3xl shadow-2xl hover:shadow-purple-500/50 transition-all duration-500 hover:scale-115 transform relative overflow-hidden enhanced-button"
-            >
+            <Button onClick={scrollToConfessions} size="lg" className="group bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 hover:from-purple-700 hover:via-purple-800 hover:to-pink-700 text-white px-16 py-8 text-2xl font-semibold rounded-3xl shadow-2xl hover:shadow-purple-500/50 transition-all duration-500 hover:scale-115 transform relative overflow-hidden enhanced-button">
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <span className="relative flex items-center gap-4">
                 <span className="text-3xl animate-bounce">👁️</span>
@@ -105,12 +76,7 @@ const Hero = () => {
               </span>
             </Button>
             
-            <Button 
-              onClick={openSubmissionForm}
-              variant="outline"
-              size="lg"
-              className="group border-3 border-purple-400/60 text-purple-200 hover:bg-purple-400/30 hover:border-purple-300 hover:text-white px-16 py-8 text-2xl font-semibold rounded-3xl transition-all duration-500 hover:scale-115 transform backdrop-blur-md bg-white/10 relative overflow-hidden enhanced-button"
-            >
+            <Button onClick={openSubmissionForm} variant="outline" size="lg" className="group border-3 border-purple-400/60 text-purple-200 hover:bg-purple-400/30 hover:border-purple-300 hover:text-white px-16 py-8 text-2xl font-semibold rounded-3xl transition-all duration-500 hover:scale-115 transform backdrop-blur-md bg-white/10 relative overflow-hidden enhanced-button">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <span className="relative flex items-center gap-4">
                 <span className="text-3xl animate-bounce animation-delay-200">✍️</span>
@@ -126,11 +92,15 @@ const Hero = () => {
               <span className="text-lg font-medium">100% Anonymous</span>
             </div>
             <div className="flex items-center gap-3 card-hover p-4 rounded-2xl bg-white/5 backdrop-blur-md animation-delay-200">
-              <div className="w-4 h-4 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="w-4 h-4 bg-blue-400 rounded-full animate-pulse" style={{
+              animationDelay: '1s'
+            }}></div>
               <span className="text-lg font-medium">No Registration</span>
             </div>
             <div className="flex items-center gap-3 card-hover p-4 rounded-2xl bg-white/5 backdrop-blur-md animation-delay-400">
-              <div className="w-4 h-4 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+              <div className="w-4 h-4 bg-purple-400 rounded-full animate-pulse" style={{
+              animationDelay: '2s'
+            }}></div>
               <span className="text-lg font-medium">Safe Space</span>
             </div>
           </div>
@@ -144,8 +114,6 @@ const Hero = () => {
           <p className="text-sm text-gray-300 mt-3 font-medium tracking-wide animate-pulse">SCROLL</p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
