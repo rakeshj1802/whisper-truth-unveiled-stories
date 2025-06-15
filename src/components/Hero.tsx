@@ -60,7 +60,7 @@ const Hero = () => {
           <h2 key={currentText} className="text-3xl md:text-5xl lg:text-6xl text-white/95 font-light mb-8 transition-all duration-1000 animate-fade-in-scale min-h-[4rem] md:min-h-[6rem] leading-tight">
             {dynamicTexts[currentText]}
           </h2>
-          <p className="text-xl text-gray-200/90 max-w-5xl mx-auto leading-relaxed animate-elegant-slide animation-delay-600 md:text-2xl font-light">
+          <p className="text-gray-200/90 max-w-5xl mx-auto leading-relaxed animate-elegant-slide animation-delay-600 md:text-2xl text-xs font-light text-center">
             Unfiltered voices. No signups. Just the truth. Real stories that matter.
           </p>
         </div>
