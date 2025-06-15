@@ -46,7 +46,7 @@ const Hero = () => {
         </div>
 
         {/* Enhanced Brand Title with Text Shimmer */}
-        <div className="mb-16 animate-slide-in-up animation-delay-200">
+        <div className="mb-16 animate-slide-in-up animation-delay-200 rounded-md">
           <h1 className="font-playfair text-6xl md:text-8xl lg:text-9xl font-bold mb-8">
             <span className="text-shimmer">
               Confession
