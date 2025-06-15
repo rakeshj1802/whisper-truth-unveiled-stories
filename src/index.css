@@ -38,47 +38,32 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
@@ -100,20 +85,16 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Subtle animated logo watermark for the entire site. */
+    /* Professional animated logo watermark for the entire site. */
     background-image: url('/lovable-uploads/b0878ead-54eb-40b1-9283-51cd3e8f1354.png');
     background-repeat: no-repeat;
-    background-position: center 10vh; /* position a touch down from the top */
-    background-size: 400px auto;
-    /* 
-      Blending tricks for subtle watermark effect:
-      - Use high transparency for the logo.
-      - For extra subtlety, can use a filter for grayscale.
-    */
+    background-position: center 12vh;
+    background-size: 320px auto;
     opacity: 1;
   }
 }
 
+/* Professional watermark with enhanced animations */
 body::before {
   content: "";
   position: fixed;
@@ -122,26 +103,30 @@ body::before {
   pointer-events: none;
   background-image: url('/lovable-uploads/b0878ead-54eb-40b1-9283-51cd3e8f1354.png');
   background-repeat: no-repeat;
-  background-position: center 10vh;
-  background-size: 400px auto;
-  opacity: 0.05;
-  filter: grayscale(20%);
-  animation: subtleFloat 8s ease-in-out infinite;
+  background-position: center 12vh;
+  background-size: 320px auto;
+  opacity: 0.03;
+  filter: grayscale(30%) blur(0.5px);
+  animation: professionalFloat 12s ease-in-out infinite;
 }
 
-/* Floating animation keyframes */
-@keyframes float {
+/* Professional Animation Keyframes */
+@keyframes professionalFloat {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px) scale(1) rotate(0deg);
+    opacity: 0.03;
   }
   25% {
-    transform: translateY(-10px) rotate(1deg);
+    transform: translateY(-8px) scale(1.01) rotate(0.5deg);
+    opacity: 0.04;
   }
   50% {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-15px) scale(1.02) rotate(0deg);
+    opacity: 0.05;
   }
   75% {
-    transform: translateY(-10px) rotate(-1deg);
+    transform: translateY(-8px) scale(1.01) rotate(-0.5deg);
+    opacity: 0.04;
   }
 }
 
@@ -149,27 +134,73 @@ body::before {
   0%, 100% {
     transform: translateY(0px) scale(1);
   }
-  50% {
-    transform: translateY(-5px) scale(1.02);
+  33% {
+    transform: translateY(-8px) scale(1.02);
+  }
+  66% {
+    transform: translateY(-4px) scale(1.01);
   }
 }
 
 @keyframes glowPulse {
   0%, 100% {
-    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 40px rgba(236, 72, 153, 0.3));
   }
   50% {
-    filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6));
+    filter: drop-shadow(0 0 40px rgba(168, 85, 247, 0.7)) drop-shadow(0 0 80px rgba(236, 72, 153, 0.5));
   }
 }
 
-/* Custom animation classes */
+@keyframes smoothFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes elegantSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Professional animation classes */
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: professionalFloat 8s ease-in-out infinite;
 }
 
 .animate-glow-pulse {
-  animation: glowPulse 3s ease-in-out infinite;
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+.animate-smooth-fade-in {
+  animation: smoothFadeIn 1s ease-out forwards;
+}
+
+.animate-elegant-slide {
+  animation: elegantSlide 0.8s ease-out forwards;
+}
+
+/* Animation delays for staggered effects */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
 }
 
 /* Ensure the #root container does not override the background */
@@ -177,4 +208,36 @@ body::before {
   max-width: 1280px;
   margin: 0 auto;
   text-align: center;
+}
+
+/* Professional hover effects for interactive elements */
+.professional-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.professional-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced button styles */
+.enhanced-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enhanced-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.enhanced-button:hover::before {
+  left: 100%;
 }
