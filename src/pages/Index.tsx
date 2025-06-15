@@ -23,7 +23,7 @@ const Index = () => {
   const categoryNameForFeed = currentCategory ? currentCategory.name : undefined;
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gray-900 w-full overflow-x-hidden">
       <Hero />
       {/* 1. Language selection */}
       <LanguageCategoriesNav
@@ -43,12 +43,16 @@ const Index = () => {
       )}
       {/* Confessions Feed rendered only if both are picked */}
       {canShowSubCategories && selectedCategorySlug && (
-        <ConfessionsFeed
-          // Optionally, also pass language for future customization
-          categoryName={categoryNameForFeed}
-        />
+        <div className="px-2 sm:px-4 md:px-6 lg:px-8">
+          <ConfessionsFeed
+            // Optionally, also pass language for future customization
+            categoryName={categoryNameForFeed}
+          />
+        </div>
       )}
-      <SubmitSection />
+      <div className="px-2 sm:px-4 md:px-6 lg:px-8">
+        <SubmitSection />
+      </div>
       <Footer />
       <MobileNavBar />
     </div>

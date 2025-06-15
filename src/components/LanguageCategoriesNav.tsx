@@ -62,90 +62,88 @@ const LanguageCategoriesNav: React.FC<LanguageCategoriesNavProps> = ({
       <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent"></div>
       
-      {/* Content Container */}
-      <div
-        className="relative max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-4 md:py-6 flex flex-col"
-        style={{ minHeight: 'unset' }}
-      >
-        {/* Section Header */}
-        <div className="text-center mb-6 md:mb-8 px-2">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-2">
+      {/* Content Container - Fully Responsive */}
+      <div className="relative w-full mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 md:py-6">
+        {/* Section Header - Mobile Optimized */}
+        <div className="text-center mb-4 md:mb-6 lg:mb-8">
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-1 md:mb-2">
             Choose Your Language
           </h3>
-          <p className="text-gray-400 text-xs sm:text-sm md:text-base">
+          <p className="text-gray-400 text-xs sm:text-sm md:text-base lg:text-lg px-2">
             Select a language to explore authentic confessions
           </p>
         </div>
 
-        {/* Navigation Menu */}
-        <NavigationMenu className="mx-auto w-full overflow-x-auto scrollbar-thin scrollbar-thumb-purple-700 scrollbar-track-transparent">
-          <NavigationMenuList className="flex flex-row sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 md:gap-6 min-w-max">
+        {/* Navigation Menu - Responsive Grid */}
+        <div className="w-full overflow-hidden">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4 lg:gap-6 max-w-6xl mx-auto">
             {languageCategories.map((language, index) => {
               const isActive = language.slug === selectedLanguageSlug;
               return (
-                <NavigationMenuItem key={language.id}>
-                  <Button
-                    variant="ghost"
-                    onClick={() => onSelectLanguage(language.slug)}
-                    className={cn(
-                      "group relative overflow-hidden px-4 sm:px-6 md:px-8 py-3 sm:py-4 h-auto rounded-2xl",
-                      "bg-white/5 backdrop-blur-md border border-white/10",
-                      "hover:bg-white/10 hover:border-purple-400/50 hover:scale-105",
-                      "transition-all duration-500 ease-out",
-                      "text-white/90 hover:text-white",
-                      "shadow-lg hover:shadow-purple-500/25",
-                      isActive && [
-                        "bg-gradient-to-r", language.color,
-                        "border-transparent shadow-xl scale-105",
-                        "text-white ring-2 ring-white/20"
-                      ],
-                      "animate-fade-in-scale"
-                    )}
-                    style={{ 
-                      animationDelay: `${index * 100}ms`,
-                      animationFillMode: 'both',
-                      minWidth: '110px'
-                    }}
-                  >
-                    {/* Background Gradient Effect */}
-                    <div className={cn(
-                      "absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500",
-                      "bg-gradient-to-r", language.color
-                    )}></div>
-                    
-                    {/* Active State Background */}
+                <Button
+                  key={language.id}
+                  variant="ghost"
+                  onClick={() => onSelectLanguage(language.slug)}
+                  className={cn(
+                    "group relative overflow-hidden h-auto aspect-square sm:aspect-auto",
+                    "p-2 sm:p-3 md:p-4 lg:p-6 rounded-xl sm:rounded-2xl",
+                    "bg-white/5 backdrop-blur-md border border-white/10",
+                    "hover:bg-white/10 hover:border-purple-400/50 hover:scale-105",
+                    "transition-all duration-500 ease-out",
+                    "text-white/90 hover:text-white",
+                    "shadow-lg hover:shadow-purple-500/25",
+                    "flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-3",
+                    isActive && [
+                      "bg-gradient-to-r", language.color,
+                      "border-transparent shadow-xl scale-105",
+                      "text-white ring-2 ring-white/20"
+                    ],
+                    "animate-fade-in-scale"
+                  )}
+                  style={{ 
+                    animationDelay: `${index * 100}ms`,
+                    animationFillMode: 'both'
+                  }}
+                >
+                  {/* Background Gradient Effect */}
+                  <div className={cn(
+                    "absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500",
+                    "bg-gradient-to-r", language.color
+                  )}></div>
+                  
+                  {/* Active State Background */}
+                  {isActive && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent animate-pulse"></div>
+                  )}
+                  
+                  {/* Content */}
+                  <div className="relative flex flex-col items-center gap-1 sm:gap-2 md:gap-3">
+                    <span 
+                      role="img" 
+                      aria-label={language.name} 
+                      className="text-lg sm:text-xl md:text-2xl lg:text-3xl transform group-hover:scale-110 transition-transform duration-300"
+                    >
+                      {language.icon}
+                    </span>
+                    <span className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg tracking-wide text-center leading-tight">
+                      {language.name}
+                    </span>
+                    {/* Active Indicator */}
                     {isActive && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent animate-pulse"></div>
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse"></div>
                     )}
-                    
-                    {/* Content */}
-                    <div className="relative flex items-center gap-2 sm:gap-3">
-                      <span 
-                        role="img" 
-                        aria-label={language.name} 
-                        className="text-xl sm:text-2xl transform group-hover:scale-110 transition-transform duration-300"
-                      >
-                        {language.icon}
-                      </span>
-                      <span className="font-semibold text-base sm:text-lg tracking-wide">
-                        {language.name}
-                      </span>
-                      {/* Active Indicator */}
-                      {isActive && (
-                        <div className="w-2 h-2 bg-white rounded-full animate-pulse ml-1"></div>
-                      )}
-                    </div>
-                    {/* Hover Shine Effect */}
-                    <div className="absolute inset-0 -top-2 -left-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  </Button>
-                </NavigationMenuItem>
+                  </div>
+                  
+                  {/* Hover Shine Effect */}
+                  <div className="absolute inset-0 -top-2 -left-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                </Button>
               );
             })}
-          </NavigationMenuList>
-        </NavigationMenu>
+          </div>
+        </div>
 
-        {/* Professional Stats Bar */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10 w-full px-2">
+        {/* Professional Stats Bar - Mobile Responsive */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 mt-4 sm:mt-6 md:mt-8 pt-3 sm:pt-4 md:pt-6 border-t border-white/10">
           <div className="flex items-center gap-2 text-gray-400 text-xs sm:text-sm">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
             <span>5 Languages Available</span>
